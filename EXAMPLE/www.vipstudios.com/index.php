@@ -268,7 +268,7 @@ margin: auto auto 5px 5px;
 padding: 0px 0px 0px 0px;
 width: 55px;
 height: 125px;
-z-index: 125;
+z-index: 25;
 position: fixed;
 bottom: 0;
 left: 0;
