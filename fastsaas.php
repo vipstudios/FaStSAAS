@@ -621,94 +621,94 @@ class Lunnatti {
     				$_SESSION['dbb'] = $_SESSION['dbb']-$_SESSION['dbr'];
     				$_SESSION['dbf'] = $_SESSION['dbf']-$_SESSION['dbr'];
     			}
-    			break;
+    		break;
     		case '2':
     			if($_SESSION['dbf'] < $bb) {
     				$_SESSION['dbb'] = $_SESSION['dbb']+$_SESSION['dbr'];
     				$_SESSION['dbf'] = $_SESSION['dbf']+$_SESSION['dbr'];
     			}
-    			break;
+    		break;
     		case '3':
     			$_SESSION['dbf'] = '20';
     			$_SESSION['dbr'] = '20';
-    			break;
+    		break;
     		case '4':
     			$_SESSION['dbf'] = '40';
     			$_SESSION['dbr'] = '40';
-    			break;
+    		break;
     		case '5':
     			$_SESSION['dbf'] = '60';
     			$_SESSION['dbr'] = '60';
-    			break;
+    		break;
     		case '6':
     			$_SESSION['dbf'] = '80';
     			$_SESSION['dbr'] = '80';
-    			break;
+    		break;
     		case '7':
     			$_SESSION['dbf'] = '100';
     			$_SESSION['dbr'] = '100';
-    			break;
+    		break;
     		case '8':
     			if($_SESSION['dbb']-$_SESSION['dbr']*5 > '0') {
     				$_SESSION['dbb'] = $_SESSION['dbb']-$_SESSION['dbr']*5;
     				$_SESSION['dbf'] = $_SESSION['dbf']-$_SESSION['dbr']*5;
     			}
-    			break;
+    		break;
     		case '9':
     			if($_SESSION['dbb']-$_SESSION['dbr']*10 > '0') {
     				$_SESSION['dbb'] = $_SESSION['dbb']-$_SESSION['dbr']*10;
     				$_SESSION['dbf'] = $_SESSION['dbf']-$_SESSION['dbr']*10;
     			}
-    			break;
+    		break;
     		case '10':
     			if($_SESSION['dbb']+$_SESSION['dbr']*5 < $bb) {
     				$_SESSION['dbb'] = $_SESSION['dbb']+$_SESSION['dbr']*5;
     				$_SESSION['dbf'] = $_SESSION['dbf']+$_SESSION['dbr']*5;
     			}
-    			break;
+    		break;
     		case '11':
     			if($_SESSION['dbb']+$_SESSION['dbr']*10 < $bb) {
     				$_SESSION['dbb'] = $_SESSION['dbb']+$_SESSION['dbr']*10;
     				$_SESSION['dbf'] = $_SESSION['dbf']+$_SESSION['dbr']*10;
     			}
-    			break;
+    		break;
     	}
-    	$this->mod5 .= '<table border="0" cellpadding="3" cellspacing="0" style="width:100%;margin-top:10px;margin-bottom:10px;">';
-    	$this->mod5 .= '<tr><td valign="middle" align="center">';
-    	$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="1"><input type="image" src="./www-img/navLeftArrow.png" style="border:0px;"></form>';
-    	$this->mod5 .= '</td><td valign="middle" align="center">';
-    	$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="8"><input type="image" src="./www-img/navLeftX5.png" style="border:0px;"></form>';
-    	$this->mod5 .= '</td><td valign="middle" align="center">';
-    	$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="9"><input type="image" src="./www-img/navLeftX10.png" style="border:0px;"></form>';
-    	$this->mod5 .= '</td><td valign="middle" align="center">';
+    	echo('<table border="0" cellpadding="3" cellspacing="0" style="width:100%;margin-top:10px;margin-bottom:10px;">');
+    	echo('<tr><td valign="middle" align="center">');
+    	echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="1"><input type="image" src="./www-img/navLeftArrow.png" style="border:0px;"></form>');
+    	echo('</td><td valign="middle" align="center">');
+    	echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="8"><input type="image" src="./www-img/navLeftX5.png" style="border:0px;"></form>');
+    	echo('</td><td valign="middle" align="center">');
+    	echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="9"><input type="image" src="./www-img/navLeftX10.png" style="border:0px;"></form>');
+    	echo('</td><td valign="middle" align="center">');
     	switch($_SESSION['dbr']) {
     		case '20':
-    			$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="4"><input type="image" src="./www-img/nav20.png" style="border:0px;"></form>';
-    			break;
+    			echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="4"><input type="image" src="./www-img/nav20.png" style="border:0px;"></form>');
+    		break;
     		case '40':
-    			$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="5"><input type="image" src="./www-img/nav40.png" style="border:0px;"></form>';
-    			break;
+    			echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="5"><input type="image" src="./www-img/nav40.png" style="border:0px;"></form>');
+    		break;
     		case '60':
-    			$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="6"><input type="image" src="./www-img/nav60.png" style="border:0px;"></form>';
-    			break;
+    			echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="6"><input type="image" src="./www-img/nav60.png" style="border:0px;"></form>');
+    		break;
     		case '80':
-    			$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="7"><input type="image" src="./www-img/nav80.png" style="border:0px;"></form>';
-    			break;
+    			echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="7"><input type="image" src="./www-img/nav80.png" style="border:0px;"></form>');
+    		break;
     		case '100':
-    			$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="3"><input type="image" src="./www-img/nav100.png" style="border:0px;"></form>';
-    			break;
+    			echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="3"><input type="image" src="./www-img/nav100.png" style="border:0px;"></form>');
+    		break;
     		default:
-    			$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="4"><input type="image" src="./www-img/nav20.png" style="border:0px;"></form>';
-    			break;
+    			echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="4"><input type="image" src="./www-img/nav20.png" style="border:0px;"></form>');
+    		break;
     	}
-    	$this->mod5 .= '</td><td valign="middle" align="center">';
-    	$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="11"><input type="image" src="./www-img/navRightX10.png" style="border:0px;"></form>';
-    	$this->mod5 .= '</td><td valign="middle" align="center">';
-    	$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="10"><input type="image" src="./www-img/navRightX5.png" style="border:0px;"></form>';
-    	$this->mod5 .= '</td><td valign="middle" align="center">';
-    	$this->mod5 .= '<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="2"><input type="image" src="./www-img/navRightArrow.png" style="border:0px;"></form>';
-    	$this->mod5 .= '</td></tr>';
-    	$this->mod5 .= '</table>';
+    	echo('</td><td valign="middle" align="center">');
+    	echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="11"><input type="image" src="./www-img/navRightX10.png" style="border:0px;"></form>');
+    	echo('</td><td valign="middle" align="center">');
+    	echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="10"><input type="image" src="./www-img/navRightX5.png" style="border:0px;"></form>');
+    	echo('</td><td valign="middle" align="center">');
+    	echo('<form name="db" id="db" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="db" value="2"><input type="image" src="./www-img/navRightArrow.png" style="border:0px;"></form>');
+    	echo('</td></tr>');
+    	echo('</table>');
     }
     private function dbq($aa) {
     	if(isset($_POST['dbq'])) {
@@ -716,13 +716,13 @@ class Lunnatti {
     			switch($_POST['dbq']) {
     				case '1':
     					$_SESSION['dbq'] = '1';
-    					break;
+    				break;
     				case '2':
     					$_SESSION['dbq'] = '2';
-    					break;
+    				break;
     				default:
     					$_SESSION['dbq'] = '0';
-    					break;
+    				break;
     			}
     			header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
     			exit;
@@ -732,59 +732,39 @@ class Lunnatti {
     		switch($_POST['recycle_dbq']) {
     			case '1':
     				$_SESSION['dbq'] = '0';
-    				break;
+    			break;
     		}
     	}
-    	switch($_SESSION['pf']) {
-    		case '1':
-    			$amc  = '#FFFFFF';
-    			$amcc = '#FFFFFF';
-    			$amcd = 'arial_12b';
-    			$amce = 'arial_12';
-    			break;
-    		case '2':
-    			$amc  = '#FFFFFF';
-    			$amcc = '#FFFFFF';
-    			$amcd = 'arial_12b';
-    			$amce = 'arial_12';
-    			break;
-    		case '3':
-    			$amc  = '#000000';
-    			$amcc = '#000000';
-    			$amcd = 'arial_12b';
-    			$amce = 'arial_12';
-    			break;
-    	}
-    	$this->mod5 .= '<table border="0" cellpadding="2" cellspacing="0" style="width:100%;margin-top:10px;margin-bottom:10px;">';
-    	$this->mod5 .= '<form name="dbr" id="dbr" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post">';
-    	$this->mod5 .= '<tr><td valign="top" align="left" style="width:75%;">';
-    	$this->mod5 .= '<span class="'."$amcd".'"><span class="'."$amcc".'">*'."$aa".'</span></span>';
-    	$this->mod5 .= '</td><td valign="top" align="right" style="width:25%">';
+    	echo('<table border="0" cellpadding="2" cellspacing="0" style="width:100%;margin-top:10px;margin-bottom:10px;">');
+    	echo('<form name="dbr" id="dbr" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post">');
+    	echo('<tr><td valign="top" align="left" style="width:75%;">');
+    	echo('&#160;*&#160;'."$aa".'');
+    	echo('</td><td valign="top" align="right" style="width:25%">');
     	switch($_SESSION['dbq']) {
     		case '1':
-    			$this->mod5 .= '<span class="'."$amcd".'"><span style="color:'."$amcc".';">Yes</span>&nbsp;&nbsp;&nbsp;';
-    			$this->mod5 .= '<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>';
-    			$this->mod5 .= '<span class="'."$amcd".'"><span style="color:'."$amcc".';">No</span>&nbsp;&nbsp;&nbsp;';
-    			$this->mod5 .= '<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>';
+    			echo('&#160;Yes&#160;&#160;&#160;');
+    			echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>');
+    			echo('&#160;No&#160;&#160;&#160;');
+    			echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
     			break;
     		case '2':
-    			$this->mod5 .= '<span class="'."$amcd".'"><span style="color:'."$amcc".';">Yes</span>&nbsp;&nbsp;&nbsp;';
-    			$this->mod5 .= '<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>';
-    			$this->mod5 .= '<span class="'."$amcd".'"><span style="color:'."$amcc".';">No</span>&nbsp;&nbsp;&nbsp;';
-    			$this->mod5 .= '<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>';
+    			echo('&#160;Yes&#160;&#160;&#160;');
+    			echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
+    			echo('No&#160;&#160;&#160;');
+    			echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>');
     			break;
     		default:
-    			$this->mod5 .= '<span class="'."$amcd".'"><span style="color:'."$amcc".';">Yes</span>&nbsp;&nbsp;&nbsp;';
-    			$this->mod5 .= '<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>';
-    			$this->mod5 .= '<span class="'."$amcd".'"><span style="color:'."$amcc".';">No</span>&nbsp;&nbsp;&nbsp;';
-    			$this->mod5 .= '<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>';
+    			echo('&#160;Yes&#160;&#160;&#160;');
+    			echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
+    			echo('&#160;No</span>&#160;&#160;&#160;');
+    			echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
     			break;
     	}
-    	$this->mod5 .= '</td></tr>';
-    	$this->mod5 .= '<tr><td colspan="2" align="right"><span style="color:'."$amcc".';font-family:Arial;font-size:10px;">* Required Fields</span></td></tr>';
-    	$this->mod5 .= '<tr><td colspan="2" align="right"><table border="0" cellpadding="0" cellspacing="0"><tr><td align="center" valign="top"><input type="submit" value="submit"></form></td><td align="center" valign="top"><form name="recycle_dbq" id="recycle_dbq" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="recycle_dbq" value="1"><input type="submit" value="clear"></form></td></tr></table></td></tr>';
-    	$this->mod5 .= '</form>';
-    	$this->mod5 .= '<tr><td colspan="2">';
+    	echo('</td></tr>');
+    	echo('<tr><td colspan="2" align="right"><span style="color:'."$amcc".';font-family:Arial;font-size:10px;">* Required Fields</span></td></tr>');
+    	echo('<tr><td colspan="2" align="right"><table border="0" cellpadding="0" cellspacing="0"><tr><td align="center" valign="top"><input type="submit" value="submit"></form></td><td align="center" valign="top"><form name="recycle_dbq" id="recycle_dbq" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="recycle_dbq" value="1"><input type="submit" value="clear"></form></td></tr></table></td></tr>');
+    	echo('</form>');
+    	echo('<tr><td colspan="2">');
     }
     private function fsp($aa,$bb) {
     	$ns  = $aa;
@@ -1659,29 +1639,29 @@ class Lunnatti {
 		    								break;
 		    							}
 		    						}
-		    						$this->mod5 .= '<tr><td colspan="2">';
-		    						$this->mod5 .= '<table cellpadding="2" cellspacing="0" width="100%">';
+		    						echo('<tr><td colspan="2">');
+		    						echo('<table cellpadding="2" cellspacing="0" width="100%">');
 		    						if($_SESSION['dxf'] != NULL && $_SESSION['dxf']['name'] != '') {
-		    							$this->mod5 .= '<tr><td colspan="2"><span class="'."$amcd".'"><span style="color:'."$amcc".';">&#177;&#174;ank&#451;&#160;'.$_SESSION['dxf']['name'].'</span></span></td></tr>';
+		    							echo('<tr><td colspan="2">&#177;&#174;ank&#451;&#160;'.$_SESSION['dxf']['name'].'</td></tr>');
 		    						}
 		    						if($am4['7'] == '1') {
-		    							$this->mod5 .= '<tr><td align="left" valign="top"><span class="'."$amcd".'"><span style="color:'."$amcc".';font-family:Arial;font-size:14px;">*</span><span style="color:'."$amcc".';">Timer:</span></span>&#160;&#160;&#160;</td><td align="right" valign="top">';
+		    							echo('<tr><td align="left" valign="top"><span class="'."$amcd".'"><span style="color:'."$amcc".';font-family:Arial;font-size:14px;">*</span><span style="color:'."$amcc".';">Timer:</span></span>&#160;&#160;&#160;</td><td align="right" valign="top">');
 		    						} elseif($am4['7'] == '2') {
-		    							$this->mod5 .= '<tr><td align="left" valign="top"><span class="'."$amcd".'"><span style="color:'."$amcc".';">Timer:</span></span>&#160;&#160;&#160;</td><td align="right" valign="top">';
+		    							echo('<tr><td align="left" valign="top"><span class="'."$amcd".'"><span style="color:'."$amcc".';">Timer:</span></span>&#160;&#160;&#160;</td><td align="right" valign="top">');
 		    						}
 		    						if($am4['3'] == '1') {
-		    							$this->mod5 .= '<select name="'.$am3['0'].'" id="'.$am3['0'].'" onChange="javascript:this.form.submit();" style="width:160px;height:25px;">';
+		    							echo('<select name="'.$am3['0'].'" id="'.$am3['0'].'" onChange="javascript:this.form.submit();" style="width:160px;height:25px;">');
 		    						} elseif($am4['3'] == '2') {
-		    							$this->mod5 .= '<select name="'.$am3['0'].'" id="'.$am3['0'].'" onChange="javascript:this.form.submit();" style="width:160px;height:25px;" disabled>';
+		    							echo('<select name="'.$am3['0'].'" id="'.$am3['0'].'" onChange="javascript:this.form.submit();" style="width:160px;height:25px;" disabled>');
 		    						}
 		    						for($i=1;$i<22;$i++) {
 		    							if($_SESSION[$am3['0']] == $i) {
-		    								$this->mod5 .= '<option value="'.$i.'" selected>'.$i.' day</option>';
+		    								echo('<option value="'.$i.'" selected>'.$i.' day</option>');
 		    							} else {
 		    								if($type == '1' && $i != '7') {
-		    									$this->mod5 .= '<option value="'.$i.'" disabled>'.$i.' day</option>';
+		    									echo('<option value="'.$i.'" disabled>'.$i.' day</option>');
 		    								} else {
-		    									$this->mod5 .= '<option value="'.$i.'">'.$i.' day</option>';
+		    									echo('<option value="'.$i.'">'.$i.' day</option>');
 		    								}
 		    							}
 		    						}
