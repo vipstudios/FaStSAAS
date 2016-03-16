@@ -318,8 +318,6 @@ echo('<script src="./www-cgi/jquery-1.9.1.min.js"></script>');
 //echo('<script src="./www-cgi/jquery.mobile-1.4.5.min.js"></script>');
 echo('<link rel="stylesheet" href="./www-cgi/vegas.min.css">');
 echo('<script src="./www-cgi/vegas.min.js"></script>');
-echo('<script src="./www-cgi/morphext.css"></script>');
-echo('<script src="./www-cgi/morphext.min.js"></script>');
 echo('<style type="text/css">'.$css.'</style>');
 $scripts = ('
 <script>
