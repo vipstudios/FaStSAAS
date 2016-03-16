@@ -1,12 +1,12 @@
 # FaStSAAS
 PHP Session Management Framework
 
-//-----------------------------------------------------------------------------------------------------
-FaStSAAS v.3.1*"#HaulsAas!"
-//-----------------------------------------------------------------------------------------------------
-*FaStSAAS By James Schulze ;{>
-"Fast Software as a Service"
-Dynamic Objects allow you to do anything w/PHP 
+//-----------------------------------------------------------------------------------------------------/n/r
+FaStSAAS v.3.1*"#HaulsAas!"/n/r
+//-----------------------------------------------------------------------------------------------------/n/r
+*FaStSAAS By James Schulze ;{>/n/r
+"Fast Software as a Service"/n/r
+Dynamic Objects allow you to do anything w/PHP/n/r
 Create a login form object d01 on page vu=1:1 and a signup form d02 on page 1:2
 Create a data loop on 2:1 that allows logged in members a home page or redirected to login
 Pages are dynamic and can go up to vu=9999:9999:9999:9999:9999
