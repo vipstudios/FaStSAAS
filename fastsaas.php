@@ -1,8 +1,9 @@
 <?php
+//--Distributed under the MIT License./////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------------------------
 //--FaStSAAS v.3.1*"#HaulsAas!"
 //-----------------------------------------------------------------------------------------------------
-//--*FaStSAAS By James Schulze ;{>
+//--*FaStSAAS By James Schulze 06-06-2016 ;{>
 //--"Fast Software as a Service"
 //--Dynamic Objects allow you to do anything w/PHP 
 //--Create a login form object d01 on page vu=1:1 and a signup form d02 on page 1:2
