@@ -263,6 +263,16 @@ overflow-x: hidden;
 overflow-y: hidden;
 display: none;
 }
+div.GitHub {
+margin: auto auto 5px 5px;
+padding: 0px 0px 0px 0px;
+width: 55px;
+height: 125px;
+z-index: 125;
+position: fixed;
+bottom: 0;
+left: 0;
+}
 div.clientLoginResponse {
 margin: 0px 0px 0px 0px;
 padding: 3px 3px 3px 3px;
@@ -451,6 +461,8 @@ echo('<div class="clientLoginResponse" id="clientLoginResponse"></div>');
 echo('<div class="clientLogin" id="clientLogin"></div>');
 
 echo('</div>');
+
+echo('<div class="GitHub"><a href="http://www.github.com/vipstudios" target="_blank"><img src="./www-img/vipLogoGitHub.png"></a></id>');
 
 for($i=0;$i<55;$i++) {
 	echo('<br>');
