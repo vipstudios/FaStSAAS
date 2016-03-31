@@ -145,7 +145,7 @@ class Lunnatti {
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_code','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_data','vl'=>array(),'bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_rgx','vl'=>array(),'bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_out','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_out','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'qry_last','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'qvo_last','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'qvo_lall','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
@@ -160,6 +160,7 @@ class Lunnatti {
         					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_email_1_1_103_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrid_2_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrpd_3_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'2:1','sl'=>'','pd'=>'','vr'=>'d03_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'9999','sl'=>'','pd'=>'','vr'=>'d9999_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s')
                              );
         $this->qvc           = count($this->qv);
@@ -436,7 +437,7 @@ class Lunnatti {
         $this->mod5();
         $this->loc();
     }
-    public function vue() {
+    private function vue() {
     	@$url = explode('vu=',$_SERVER['HTTP_REFERER']);
     	@$urli = $url['1'];
     	if(strpos($urli,'&')) {
@@ -448,7 +449,7 @@ class Lunnatti {
     private function rgx($am) {
         switch($am) {
             case '1':
-                $exp = '/^[0-9]{1,4}+[:]{1}+[0-9]{1,4}([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})$/';
+                $exp = '/^[0-9]{1,4}([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})$/';
                 return $exp;
             break;
             case '2':
@@ -789,6 +790,7 @@ class Lunnatti {
     	$arr3  = array();
     	$ami   = 0;
     	$amii  = 0;
+    	$amiii = 0;
     	$amix  = 0;
     	$amiy  = 0;
     	$amio  = '';
@@ -875,25 +877,30 @@ class Lunnatti {
     			$arr1[] = $svar.'='.$sval;
     		}
     	}
-    	if(isset($_SESSION['d_sys_data']) && ($_SESSION['d_sys_data'] == NULL || (count($_SESSION['d_sys_data']) != count($arr1)))) {
-    		$_SESSION['d_sys_data'] = $arr1;
+    	if(isset($_SESSION['d_sys_data'])) {
+    		if(count($_SESSION['d_sys_data']) != count($arr1)) {
+    			$_SESSION['d_sys_data'] = $arr1;
+    			$ami++;
+    		}
     	}
-    	if(isset($_SESSION['d_sys_rgx']) && ($_SESSION['d_sys_rgx'] == NULL || (count($_SESSION['d_sys_rgx']) != count($arr1)))) {
-    		$_SESSION['d_sys_rgx'] = '';
-    		foreach($arr1 as $avar=>$aval) {
-    			$amx = explode('=',$aval);
-    			$_SESSION['d_sys_rgx'][$amx['0']] = '0';
+    	if(isset($_SESSION['d_sys_rgx'])) {
+    		if(count($_SESSION['d_sys_rgx']) != count($arr1)) {
+	    		foreach($arr1 as $avar=>$aval) {
+	    			$amx = explode('=',$aval);
+	    			$_SESSION['d_sys_rgx'][$amx['0']] = '0';
+	    			$ami++;
+	    		}
     		}
     	}
     	if(isset($_SESSION['d_sys_rgx']) && $_SESSION['d_sys_rgx'] != NULL) {
-	    	foreach($_SESSION['d_sys_rgx'] as $d_sys_tst_var=>$d_sys_tst_val) {
-	    		if(!isset($_SESSION[$d_sys_tst_var])) {
-	    			unset($_SESSION['d_sys_data']);
-	    			unset($_SESSION['d_sys_rgx']);
-	    			header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    			exit;
-	    		}
-	    	}
+    		foreach($_SESSION['d_sys_rgx'] as $d_sys_tst_var=>$d_sys_tst_val) {
+    			if(!isset($_SESSION[$d_sys_tst_var])) {
+    				unset($_SESSION['d_sys_data']);
+    				unset($_SESSION['d_sys_rgx']);
+    				header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+    				exit;
+    			}
+    		}
     	}
     	if(count($arr1) > '0') {
     		foreach($arr1 as $avar=>$aval) {
@@ -926,7 +933,7 @@ class Lunnatti {
     			}
     		}
     	}
-    	if(isset($_POST['d_obj']) && preg_match('/^d+[0-9]{2,3}+$/',$_POST['d_obj'])) {
+    	if(isset($_POST['d_obj']) && preg_match('/^d+[0-9]{2,4}+$/',$_POST['d_obj'])) {
     		foreach($_SESSION['d_sys_data'] as $res0var=>$res0val) {
     			$rc1 = explode('=',$res0val);
     			$rc2 = explode('_',$rc1['0']);
@@ -990,32 +997,25 @@ class Lunnatti {
     					if($arr3val['obj'] == $amio) {
 	    					switch($arr3val['obj']) {
 	    						case 'd01':
-	    							$amisql = Lunnatti::dbi('1','SELECT * FROM account WHERE BINARY userid = \''.$_SESSION['d01_usrid_1_1_113_2_1_1'].'\' AND BINARY passwd = \''.$_SESSION['d01_usrpd_2_1_106_3_1_1'].'\'');
-	    							if(mysql_num_rows($amisql) > 0) {
-		    							switch($_SESSION['d_sys_status']) {
-		    								case '0':
-		    									echo('<span id="success">Logging you in...</span>');
-		    									$_SESSION['d_sys_status'] = '1';
-		    								break;
-		    								case '1':
-		    									while($row = mysql_fetch_array($amisql)) {
-		    										$_SESSION['secact'] = $row['acct'];
-		    										$_SESSION['seclvl'] = $row['seclvl'];
-		    										$_SESSION['secmsg'] = $row['secmsg'];
-		    										$_SESSION['seceml'] = $row['email'];
-		    										$_SESSION['secusr'] = $row['userid'];
-		    									}
-		    									Lunnatti::dbi('1','UPDATE account SET secipl = \''.$_SERVER['REMOTE_ADDR'].'\' WHERE acct = \''.$_SESSION['secact'].'\' LIMIT 1');
-		    									foreach($arr1 as $d_sysArr1var=>$d_sysArr1val) { $dx = explode('=',$d_sysArr1val); $_SESSION['d_sys_rgx'][$dx['0']] = '0'; } $arr3[$amiii]['exe'] = '0'; $_SESSION['d_sys_status'] = '0';
-		    									$_SESSION['d_sys_status'] = '0';
-		    									header('Location:'.$_SERVER['PHP_SELF'].'?vu=2:1');
-		    									exit;
-		    								break;
+	    							if($_SESSION['seclvl'] == '0') {
+		    							$amisql = Lunnatti::dbi('1','SELECT * FROM account WHERE BINARY userid = \''.$_SESSION['d01_usrid_1_1_113_2_1_1'].'\' AND BINARY passwd = \''.$_SESSION['d01_usrpd_2_1_106_3_1_1'].'\'');
+		    							if(mysql_num_rows($amisql) > 0) {
+		    								while($row = mysql_fetch_array($amisql)) {
+		    									$_SESSION['secact'] = $row['acct'];
+		    									$_SESSION['seclvl'] = $row['seclvl'];
+		    									$_SESSION['secmsg'] = $row['secmsg'];
+		    									$_SESSION['seceml'] = $row['email'];
+		    									$_SESSION['secusr'] = $row['userid'];
+		    								}
+		    								Lunnatti::dbi('1','UPDATE account SET secipl = \''.$_SERVER['REMOTE_ADDR'].'\' WHERE acct = \''.$_SESSION['secact'].'\' LIMIT 1');
+		    								echo('<span id="success">Logging you in...</span>');
+		    							} else {
+		    								$_SESSION['d_sys_rgx']['d01_usrid_1_1_113_2_1_1'] = '0';
+		    								$_SESSION['d_sys_rgx']['d01_usrpd_2_1_106_3_1_1'] = '0';
+		    								echo('<span id="status">Your User ID or Password is incorrect, please login again...</span>');
 		    							}
-	    							} else {
-	    								$_SESSION['d_sys_rgx']['d01_usrid_1_1_113_2_1_1'] = '0';
-	    								$_SESSION['d_sys_rgx']['d01_usrpd_2_1_106_3_1_1'] = '0';
-	    								echo('<span id="status">Your User ID or Password is incorrect, please login again...</span>');
+	    							} elseif($_SESSION['seclvl'] == '1') {
+	    								echo('<span id="success">Logged in...</span>');
 	    							}
 	    						break;
 	    						case 'd02':
@@ -1052,7 +1052,15 @@ class Lunnatti {
 	    						break;//
 	    						///DYNAMIC OBJECTS
 	    						case 'd03':
-	    							
+	    							switch($_SESSION['d03_data_1_1_999_1_2_1']) {
+	    								case '1':
+	    									if($_SESSION['seclvl'] == '0') {
+	    										echo('<span id="status">You must be logged in to view this page...</span>');
+	    									} elseif($_SESSION['seclvl'] == '1') {
+	    										echo('<span id="success">Welcome '.$_SESSION['secusr'].',</span>');
+	    									}
+	    								break;
+	    							}
 	    						break;
 	    						case 'd04':
 	    							
@@ -1064,12 +1072,12 @@ class Lunnatti {
 	    						case 'd9999'://LOGOUT;{>
 	    							switch($_SESSION['d9999_data_1_1_999_1_2_1']) {
 	    								case '1':
-	    									session_destroy();
 	    									$_SESSION['d9999_data_1_1_999_1_2_1'] = '2';
 	    									header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
 	    									exit;
 	    								break;
 	    								case '2':
+	    									@session_destroy();
 	    									echo('<span id="success">You have been logged out...</span>');
 	    								break;
 	    							}
@@ -1084,7 +1092,7 @@ class Lunnatti {
     					$am3 = explode('=',$arr1val);
     					$am4 = explode('_',$am3['0']);
     					if($arr1uval == $am4['0']) {
-	    					if($am4['2'] == '1') {
+	    					if($am4['2'] == '1' && $am4['6'] == '1') {
 	    						echo('<form name="'."$arr1uval".'" id="'."$arr1uval".'" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post" enctype="multipart/form-data">');
 	    						echo('<input type="hidden" name="'."$arr1uval".'" value="'."$arr1uval".'">');
 	    						echo('<table border="0" cellpadding="0" cellspacing="0" width="100%">');
