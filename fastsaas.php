@@ -5,12 +5,51 @@
 //-----------------------------------------------------------------------------------------------------
 //--*FaStSAAS By James Schulze 06-06-2016 ;{>
 //--"Fast Software as a Service"
+//--
 //--Dynamic Objects allow you to do anything w/PHP 
 //--Create a login form object d01 on page vu=1:1 and a signup form d02 on page 1:2
 //--Create a data loop on 2:1 that allows logged in members a home page or redirected to login
 //--Pages are dynamic and can go up to vu=9999:9999:9999:9999:9999
-//--Drop fastsaas.php into a folder that can be protected from the www
+//--Drop fastsaas.php into a folder that can be protected from the www with mod_rewrite or rename index.php
 //--Then make Jquery Ajax calls to include dynamic content into @ny div
+//--Imagine making a virtual website with no template like so:
+//--
+//--./www-cgi/fastsaas.php?vu=1:1     =d04=   Home Page
+//--./www-cgi/fastsaas.php?vu=2:1     =d01=   Account Page
+//--./www-cgi/fastsaas.php?vu=2:1     =d02=   Signup Page
+//--./www-cgi/fastsaas.php?vu=3:1     = =     Directory Page
+//--./www-cgi/fastsaas.php?vu=4:1     =d03=   Auctions Page
+//--./www-cgi/fastsaas.php?vu=5:1     = =     Classifieds Page
+//--./www-cgi/fastsaas.php?vu=6:1     = =     Networking Page
+//--./www-cgi/fastsaas.php?vu=7:1     = =     Games Page
+//--./www-cgi/fastsaas.php?vu=8:1     = =     Events Page
+//--./www-cgi/fastsaas.php?vu=9999    =d9999= Logout Page
+//--
+//--Now to create content for these pages just decide what you need to do. For example,
+//--Let's say on the Home Page we only need to create a data loop to get a html layout from a db, well, then
+//--create a data loop. It's up to you to track dynamic objects and what you've used and what you havn't. You
+//--can also have multiple objects per page (ie. d04,d05,d06 all exist on Home Page). If you create a form
+//--it will NOT hit the dynamic object loop until all form elements pass their reg expression patterns. Data
+//--Objects test true and will go straight into executing code in whatever loop you create.
+//--I used d01 as a login form, d02 for a signup form, d03 for a data loop for the Account Page so we could
+//--use d04 on index and if the goal is to query a db table and get a html template for advertising then we
+//--would do this like so:
+//--
+//--1) First you need to create all session variables in the constructor class $this->vrs (vrs=variables)
+//--
+//--        $this->vrs =   array(
+//--        					 array('pg'=>'page','sl'=>'securityLevel','pd'=>'paid','vr'=>'variable','vl'=>'value','bg'=>'background','vi'=>'visualEffects','rx'=>'regExpression','rt'=>'requestType'),
+//--        					 array('pg'=>'1:1','sl'=>'0:notLoggedIn,1:loggedIn','pd'=>'0:no,1:yes','vr'=>'d04_dataa_1_1_999_1_2_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'111','rt'=>'g:get,p:post,r:request,s:server'),
+//--
+//--So to create the data loop we need to add the following to the vrs array:
+//--array('pg'=>'1:1','sl'=>'0','pd'=>'0','vr'=>'d04_dataa_1_1_999_1_2_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+//--
+//--@NYTHING ON PAGE 0 WILL EXIST EVERYWHERE THROUGHOUT THE SESSION!!!
+//--
+//--Now in mod5 locate the DYNAMIC OBJECTS section and in the switch statement either locate or create the switch option named
+//--d01 , d02, d03, d04, d05 , d06 or whatever your creating then use a switch of if if/else to create desired effects whether
+//--that is querying a database or handling data.
+//--
 //--Call the logout url to destroy the session: ./www-cgi/fastsaas.php?vu=9999
 //--Name "d01_usrid_1_1_113_2_1_1" each variable is as follows: explode('_',$variable);
 //-----------------------------------------------------------------------------------------------------
@@ -107,7 +146,7 @@
 	    						case 'd9999'://LOGOUT;{>
 	    							switch($_SESSION['d9999_data_1_1_999_1_2_1']) {
 	    								case '1':
-	    									session_destroy();
+	    									@session_destroy();
 	    									$_SESSION['d9999_data_1_1_999_1_2_1'] = '2';
 	    									header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
 	    									exit;
@@ -197,7 +236,7 @@ class Lunnatti {
         $GLOBALS['www']      = 'created';
         $this->destroy();
     }
-    private function destroy() {
+    private function destroy() {/*DESTROYS VARIABLES THAT DO NOT EXIST ON A CERTAIN PAGE*/
         for($ai=0;$ai<$this->aa;$ai++) {
         	if(isset($_SESSION[$this->vrs[$ai]['vr']]) && $_SESSION[$this->vrs[$ai]['vr']] == '..') {
         		unset($_SESSION[$this->vrs[$ai]['vr']]);
@@ -236,7 +275,7 @@ class Lunnatti {
         }
         $this->create();
     }
-    private function create() {
+    private function create() {/*CREATES VARIABLES THAT EXIST ON A CERTAIN PAGE*/
     	for($ai=0;$ai<$this->aa;$ai++) {
     		if($this->vrs[$ai]['pg'] == '0' && !isset($_SESSION[$this->vrs[$ai]['vr']])) {
     			$_SESSION[$this->vrs[$ai]['vr']] = $this->vrs[$ai]['vl'];if(substr(get_class($this),5,1) != 't') { return; }
@@ -268,7 +307,7 @@ class Lunnatti {
     	}
     	$this->update();
     }
-    private function update() {
+    private function update() {/*UPDATES VARIABLES THAT EXIST ON A CERTAIN PAGE*/
         if($this->ai > 0 || $this->aii > 0 || $_SESSION['qry_last'] != $_SERVER['QUERY_STRING']) {
         	if($this->ai != 0) {
         		$this->ai = 0;
@@ -433,11 +472,11 @@ class Lunnatti {
         }
         $this->mldr();
     }
-    private function mldr() {
+    private function mldr() {/*MODULE LOADER*/
         $this->mod5();
         $this->loc();
     }
-    private function vue() {
+    private function vue() {/*CURRENT VIEW IF $_SERVER['HTTP_REFERER'] EXISTS (IE.VU=2:1:1 returns 2:1:1)*/
     	@$url = explode('vu=',$_SERVER['HTTP_REFERER']);
     	@$urli = $url['1'];
     	if(strpos($urli,'&')) {
@@ -446,8 +485,8 @@ class Lunnatti {
     	}
     	return $urli;
     }
-    private function rgx($am) {
-        switch($am) {
+    private function rgx($aa) {/*REG EXPRESSION PATTERNS*/
+        switch($aa) {
             case '1':
                 $exp = '/^[0-9]{1,4}([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})$/';
                 return $exp;
@@ -493,7 +532,7 @@ class Lunnatti {
                 return $exp;
             break;
             case '106':
-                $exp = '/^[a-zA-Z0-9!@#$%^&*()_+= ]{0,50}$/';
+                $exp = '/^[a-zA-Z0-9!@#$%^&*()_+= ]{1,50}$/';
                 return $exp;
             break;
             case '107':
@@ -521,7 +560,7 @@ class Lunnatti {
                 return $exp;
             break;
             case '113':
-            	$exp = '/^[a-zA-Z0-9-_]{0,25}$/';
+            	$exp = '/^[a-zA-Z0-9-_]{1,25}$/';
             	return $exp;
             break;
             case '114':
@@ -574,7 +613,7 @@ class Lunnatti {
             break;
         }
     }
-    private function dbi($aa,$bb) {
+    private function dbi($aa,$bb) {/*DATABASE INTERFACE*/
     	//a) db type 1)mysql, 2)postgresql, 3)Oracle  b) SQL
     	switch($aa) {
     		case 1:
@@ -593,7 +632,7 @@ class Lunnatti {
     			break;
     	}
     }
-    private function dbn($aa,$bb) {
+    private function dbn($aa,$bb) {/*DATABASE NAVIGATION*/
     	if(!empty($_SERVER['HTTP_REFERER'])) {
     		if($_SESSION['dx'] == '') {
     			$aa = $_SERVER['HTTP_REFERER'];
@@ -711,7 +750,7 @@ class Lunnatti {
     	echo('</td></tr>');
     	echo('</table>');
     }
-    private function dbq($aa) {
+    private function dbq($aa) {/*DATABASE QUESTION Lunnatti::dbq('Would you like to make a deposit?'); RETURNS YES OR NO FORM WITH RADIO BUTTONS*/
     	if(isset($_POST['dbq'])) {
     		if(isset($_SESSION['dbq'])) {
     			switch($_POST['dbq']) {
@@ -767,7 +806,7 @@ class Lunnatti {
     	echo('</form>');
     	echo('<tr><td colspan="2">');
     }
-    private function fsp($aa,$bb) {
+    private function fsp($aa,$bb) {/*FIELD SPACE Lunnatti::fsp($row['name'],'30'); ADDS A SPACE EVERY 30 CHARS, PREVENTS LONG STRINGS RUINING VIEW LAYOUT ON MOBILE (IE. thisIsAReallyLongBusinessNameThatWouldMuckUpAPageViewBadly)*/
     	$ns  = $aa;
     	$nsx = explode(' ',$ns);
     	$nsy = count($nsx);
@@ -781,7 +820,7 @@ class Lunnatti {
     	}
     	return $nsz;
     }
-    private function mod5() {
+    private function mod5() {/*MODULE 5: CREATES DYNAMIC FORMS OR DATA LOOPS*/
     	$arr1  = array();
     	$arr1u = array();
     	$arr2  = array();
@@ -992,7 +1031,8 @@ class Lunnatti {
     			}
     			if($amii == '1') {
     				/////////////////////////////////////////////////////////////////////////////
-    				//
+    				//DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJ
+    				/////////////////////////////////////////////////////////////////////////////
     				foreach($arr3 as $arr3var => $arr3val) {
     					if($arr3val['obj'] == $amio) {
 	    					switch($arr3val['obj']) {
@@ -1019,35 +1059,31 @@ class Lunnatti {
 	    							}
 	    						break;
 	    						case 'd02':
-	    							$amisql = Lunnatti::dbi('1','SELECT COUNT(*) FROM account WHERE BINARY email = \''.$_SESSION['d02_email_1_1_103_2_1_1'].'\' OR BINARY userid = \''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\'');
-	    							if(is_resource($amisql)) {
-	    								while($row = mysql_fetch_array($amisql)) {
-	    									if($row['0'] == '0') {
-	    										switch($_SESSION['d_sys_status']) {
-	    											case '0':
-	    												echo('<span style="'."$amc".'"><span class="'."$amcd".'">Logging you in...</span></span>');
-	    												$_SESSION['d_sys_status'] = '1';
-	    											break;
-	    											case '1':
-	    												$amisql = Lunnatti::dbi('1','INSERT INTO account (seclvl,secmsg,seckey,secipl,email,userid,passwd,cashier) values (\'1\',\'1\',\''.openssl_random_pseudo_bytes(15).'\',\''.$_SERVER['REMOTE_ADDR'].'\',\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\',\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\',\''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\',\'25.00\')');
-	    												$amisql = Lunnatti::dbi('1','SELECT * FROM account WHERE BINARY userid = \''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\' AND BINARY passwd = \''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\'');
-	    												while($row = mysql_fetch_array($amisql)) {
-	    													$_SESSION['secact'] = $row['acct'];
-	    													$_SESSION['seclvl'] = $row['seclvl'];
-	    													$_SESSION['secmsg'] = $row['secmsg'];
-	    													$_SESSION['seceml'] = $row['email'];
-	    													$_SESSION['secusr'] = $row['userid'];
-	    												}
-	    												header('Location:'.$_SERVER['PHP_SELF'].'?vu=2:1');
-	    												exit;
-	    											break;
-	    										}
-	    									} else {
-	    										$_SESSION['d_sys_rgx']['d02_email_1_1_103_2_1_1'] = '0';
-	    										$_SESSION['d_sys_rgx']['d02_usrid_2_1_113_2_1_1'] = '0';
-	    										echo('The Email or User ID you have chosen is in use, please try again...');
-	    									}
-	    								}
+	    							if($_SESSION['seclvl'] == '0') {
+		    							$amisql = Lunnatti::dbi('1','SELECT COUNT(*) FROM account WHERE BINARY email=\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\' OR BINARY userid=\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\'');
+		    							if(is_resource($amisql)) {
+		    								while($row = mysql_fetch_array($amisql)) {
+		    									if($row['0'] == '0') {
+		    										$_SESSION['d_sys_status'] = '1';
+		    										$amisql = Lunnatti::dbi('1','INSERT INTO account (seclvl,secmsg,seckey,secipl,email,userid,passwd,cashier) values (\'1\',\'1\',\''.openssl_random_pseudo_bytes(15).'\',\''.$_SERVER['REMOTE_ADDR'].'\',\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\',\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\',\''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\',\'25.00\')');
+		    										$amisql = Lunnatti::dbi('1','SELECT * FROM account WHERE BINARY userid=\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\' AND BINARY passwd=\''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\'');
+		    										while($row = mysql_fetch_array($amisql)) {
+		    											$_SESSION['secact'] = $row['acct'];
+		    											$_SESSION['seclvl'] = $row['seclvl'];
+		    											$_SESSION['secmsg'] = $row['secmsg'];
+		    											$_SESSION['seceml'] = $row['email'];
+		    											$_SESSION['secusr'] = $row['userid'];
+		    										}
+		    										echo('<span id="success">Logging you in...</span>');
+		    									} else {
+		    										$_SESSION['d_sys_rgx']['d02_email_1_1_103_2_1_1'] = '0';
+		    										$_SESSION['d_sys_rgx']['d02_usrid_2_1_113_2_1_1'] = '0';
+		    										echo('<span id="status">The Email or User ID you have chosen is in use, please try again...</span>');
+		    									}
+		    								}
+		    							}
+	    							} elseif($_SESSION['seclvl'] == '1') {
+	    								echo('<span id="success">Logged in...</span>');
 	    							}
 	    						break;//
 	    						///DYNAMIC OBJECTS
@@ -1085,8 +1121,9 @@ class Lunnatti {
 	    					}
     					}
     				}
-    				//
-    				//////////////////////////////////////////////////////////////////////////////
+    				/////////////////////////////////////////////////////////////////////////////
+    				//DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJ
+    				/////////////////////////////////////////////////////////////////////////////
     			} else {
     				foreach($arr1 as $arr1var=>$arr1val) {
     					$am3 = explode('=',$arr1val);
@@ -2139,7 +2176,7 @@ class Lunnatti {
         }
         if(substr(get_class($this),4,1) != 'a') { return; }
         if(isset($_SESSION['logout']) && $_SESSION['logout'] == '1') {
-            session_destroy();
+            @session_destroy();
             header('Location:'.$_SERVER['PHP_SELF']);
             exit;
         } elseif($this->aiiiiiiiiiii > 0) {
