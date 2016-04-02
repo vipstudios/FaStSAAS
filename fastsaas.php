@@ -50,6 +50,9 @@
 //--
 //--So to create the data loop we need to add the following to the vrs array:
 //--array('pg'=>'1:1','sl'=>'0','pd'=>'0','vr'=>'d04_dataa_1_1_999_1_2_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+//--		
+//--If you only have 1 data loop to create on a page you can just call it data however, if you need multiple data loops append anything after data
+//--d04_dataa_1_1_999_1_2_1 , d04_datab_1_1_999_1_2_1 , d04_datac_1_1_999_1_2_1 , d04_dataWhatever1_1_1_999_1_2_1 , d04_dataWhatever2_1_1_999_1_2_1
 //--
 //--@NYTHING ON PAGE 0 WILL EXIST EVERYWHERE THROUGHOUT THE SESSION!!!
 //--
