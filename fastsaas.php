@@ -6,25 +6,30 @@
 //--*FaStSAAS By James Schulze 06-06-2016 ;{>
 //--"Fast Software as a Service"
 //--
-//--Dynamic Objects allow you to do anything w/PHP 
-//--Create a login form object d01 on page vu=1:1 and a signup form d02 on page 1:2
-//--Create a data loop on 2:1 that allows logged in members a home page or redirected to login
+//--Dynamic Objects allow you to do anything w/PHP.
+//--
+//--Create a login form object d01 on page vu=1:1 and a signup form d02 on page 1:2.
+//--
+//--Create a data loop on 2:1 that allows logged in members a home page or redirected to login.
+//--
 //--Pages are dynamic and can go up to vu=9999:9999:9999:9999:9999
-//--Drop fastsaas.php into a folder that can be protected from the www with mod_rewrite or rename index.php
-//--Then make Jquery Ajax calls to include dynamic content into @ny div
+//--
+//--Drop fastsaas.php into a folder that can be protected from the www with mod_rewrite or rename index.php.
+//--
+//--Then make Jquery Ajax calls to include dynamic content into @ny div.
 //--
 //--Imagine making a virtual website with no template like so:
 //--
-//--./www-cgi/fastsaas.php?vu=1:1     =d04=   Home Page
-//--./www-cgi/fastsaas.php?vu=2:1     =d01=   Account Page
-//--./www-cgi/fastsaas.php?vu=2:1     =d02=   Signup Page
-//--./www-cgi/fastsaas.php?vu=3:1     = =     Directory Page
-//--./www-cgi/fastsaas.php?vu=4:1     =d03=   Auctions Page
+//--./www-cgi/fastsaas.php?vu=1:1     =d01=   Account Login Page (ie. MemberLogin.html = Ajax: ./PATH_TO/fastsaas.php?vu=1:1)
+//--./www-cgi/fastsaas.php?vu=1:2     =d02=   Account Signup Page (ie. SignUp.html = Ajax: ./PATH_TO/fastsaas.php?vu=1:2)
+//--./www-cgi/fastsaas.php?vu=2:1     =d03=   Members Home Page (ie. Members.html = Ajax: ./PATH_TO/fastsaas.php?vu=2:1)
+//--./www-cgi/fastsaas.php?vu=3:1     =d04=   Home Page (ie. Index.html = Ajax: ./PATH_TO/fastsaas.php?vu=3:1)
+//--./www-cgi/fastsaas.php?vu=4:1     = =     Auctions Page
 //--./www-cgi/fastsaas.php?vu=5:1     = =     Classifieds Page
 //--./www-cgi/fastsaas.php?vu=6:1     = =     Networking Page
 //--./www-cgi/fastsaas.php?vu=7:1     = =     Games Page
 //--./www-cgi/fastsaas.php?vu=8:1     = =     Events Page
-//--./www-cgi/fastsaas.php?vu=9999    =d9999= Logout Page
+//--./www-cgi/fastsaas.php?vu=9999    =d9999= Logout Page (ie. Logout.html = Ajax: ./PATH_TO/fastsaas.php?vu=9999)
 //--
 //--Now to create content for these pages just decide what you need to do.
 //--
@@ -54,9 +59,18 @@
 //--If you only have 1 data loop to create on a page you can just call it data however, if you need multiple data loops append anything after data
 //--d04_dataa_1_1_999_1_2_1 , d04_datab_1_1_999_1_2_1 , d04_datac_1_1_999_1_2_1 , d04_dataWhatever1_1_1_999_1_2_1 , d04_dataWhatever2_1_1_999_1_2_1
 //--
+//--@NYTHING IN THE $THIS->VRS ARRAY WILL EXIST IN SESSION AS $_SESSION['variable'] (ie. $_SESSION['d01_usrid_1_1_113_2_1_1'])
+//--@NYTHING IN THE $THIS->VRS ARRAY WILL EXIST IN SESSION AS $_SESSION['variable'] (ie. $_SESSION['d01_usrpd_2_1_106_3_1_1'])
+//--
+//--@IF CALL ./PATH_TO/fastsaas.php?vu=1:1 THE FRAMEWORK WILL CREATE ALL VARIABLES THAT SHOULD EXIST ON THAT VIEW WHICH IN THIS CASE
+//--CREATES THE SESSION VARS ABOVE CREATING THE USER LOGIN FORM. ONCE YOU ADD YOUR DATABASE INFO TO function dbi() AND CREATE 
+//--THE FOLLOWING TABLE YOU CAN LOGIN WITH YOUR CREDENTIALS YOU ADD TO THE DATABASE.
+//--
+//-- CREATE TABLE account (acct int(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,seclvl int(3),secmsg int(3),seckey varchar(255),secipl varchar(255),email varchar(255),userid varchar(255),passwd varchar(255),cashier decimal(10,2),subscription_start bigint(255) UNSIGNED,subscription_end bigint(255) UNSIGNED,subscription_typ int(3),pref1 int(3),pref2 int(3),pref3 int(3),pref4 int(3),pref5 int(3),pref6 int(3));
+//--
 //--@NYTHING ON PAGE 0 WILL EXIST EVERYWHERE THROUGHOUT THE SESSION!!!
 //--
-//--Now in mod5 locate the DYNAMIC OBJECTS section and in the switch statement either locate or create the switch option named
+//--Now in mod5 locate the DYNAMIC OBJECTS section and in the switch statement either locate or create the switch options named
 //--d01 , d02, d03, d04, d05 , d06 or whatever your creating then use a switch,if,else,for,foreach or whatever to create desired
 //--effects whether that is querying a database or handling data.
 //--
