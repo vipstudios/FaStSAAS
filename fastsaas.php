@@ -47,8 +47,8 @@
 //--@NYTHING ON PAGE 0 WILL EXIST EVERYWHERE THROUGHOUT THE SESSION!!!
 //--
 //--Now in mod5 locate the DYNAMIC OBJECTS section and in the switch statement either locate or create the switch option named
-//--d01 , d02, d03, d04, d05 , d06 or whatever your creating then use a switch or if if/else to create desired effects whether
-//--that is querying a database or handling data.
+//--d01 , d02, d03, d04, d05 , d06 or whatever your creating then use a switch,if,else,for,foreach or whatever to create desired
+//--effects whether that is querying a database or handling data.
 //--
 //--Call the logout url to destroy the session: ./www-cgi/fastsaas.php?vu=9999
 //--Name "d01_usrid_1_1_113_2_1_1" each variable is as follows: explode('_',$variable);
