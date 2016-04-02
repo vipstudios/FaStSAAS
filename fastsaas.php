@@ -23,7 +23,7 @@
 //--./www-cgi/fastsaas.php?vu=1:1 Account Login Page (ie. d01 = MemberLogin.html = Ajax: ./PATH_TO/fastsaas.php?vu=1:1)
 //--./www-cgi/fastsaas.php?vu=1:2 Account Signup Page (ie. d02 = SignUp.html = Ajax: ./PATH_TO/fastsaas.php?vu=1:2)
 //--./www-cgi/fastsaas.php?vu=2:1 Members Home Page (ie. d03 =  Members.html = Ajax: ./PATH_TO/fastsaas.php?vu=2:1)
-//--./www-cgi/fastsaas.php?vu=3:1 Home Page (ie. Index.html = Ajax: ./PATH_TO/fastsaas.php?vu=3:1)
+//--./www-cgi/fastsaas.php?vu=3:1 Home Page (ie. d04 = Index.html = Ajax: ./PATH_TO/fastsaas.php?vu=3:1)
 //--./www-cgi/fastsaas.php?vu=4:1 Auctions Page
 //--./www-cgi/fastsaas.php?vu=5:1 Classifieds Page
 //--./www-cgi/fastsaas.php?vu=6:1 Networking Page
