@@ -844,7 +844,7 @@ class Lunnatti {
     	}
     	return $nsz;
     }
-    private function mod5() {/*MODULE 5: CREATES DYNAMIC FORMS OR DATA LOOPS*/
+    private function mod5() {/*MODULE 5: CREATES DYNAMIC FORMS AND DATA LOOPS*/
     	$arr1  = array();
     	$arr1u = array();
     	$arr2  = array();
