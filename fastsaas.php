@@ -62,7 +62,7 @@
 //--@NYTHING IN THE $THIS->VRS ARRAY WILL EXIST IN SESSION AS $_SESSION['variable'] (ie. $_SESSION['d01_usrid_1_1_113_2_1_1'])
 //--@NYTHING IN THE $THIS->VRS ARRAY WILL EXIST IN SESSION AS $_SESSION['variable'] (ie. $_SESSION['d01_usrpd_2_1_106_3_1_1'])
 //--
-//--@IF YOU CALL ./PATH_TO/fastsaas.php?vu=1:1 THE FRAMEWORK WILL CREATE ALL VARIABLES THAT SHOULD EXIST ON THAT VIEW WHICH IN THIS CASE
+//--@IF CALL ./PATH_TO/fastsaas.php?vu=1:1 THE FRAMEWORK WILL CREATE ALL VARIABLES THAT SHOULD EXIST ON THAT VIEW WHICH IN THIS CASE
 //--CREATES THE SESSION VARS ABOVE CREATING THE USER LOGIN FORM. ONCE YOU ADD YOUR DATABASE INFO TO function dbi() AND CREATE 
 //--THE FOLLOWING TABLE YOU CAN LOGIN WITH YOUR CREDENTIALS YOU ADD TO THE DATABASE.
 //--
@@ -224,6 +224,9 @@ class Lunnatti {
         					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrid_2_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrpd_3_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'2:1','sl'=>'','pd'=>'','vr'=>'d03_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_bname_1_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_email_2_1_202_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_descr_3_1_203_6_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'9999','sl'=>'','pd'=>'','vr'=>'d9999_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s')
                              );
         $this->qvc           = count($this->qv);
@@ -512,15 +515,15 @@ class Lunnatti {
     private function rgx($aa) {/*REG EXPRESSION PATTERNS*/
         switch($aa) {
             case '1':
-                $exp = '/^[0-9]{1,4}([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})$/';
+                $exp = '/^[0-9]{0,4}([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})$/';
                 return $exp;
             break;
             case '2':
-                $exp = '/^[1]{1}$/';
+                $exp = '/^[1]{0,1}$/';
                 return $exp;
             break;
             case '3':
-                $exp = '/^[a-zA-Z]{1,25}$/';
+                $exp = '/^[a-zA-Z]{0,25}$/';
                 return $exp;
             break;
             case '4':
@@ -528,7 +531,7 @@ class Lunnatti {
                 return $exp;
             break;
             case '5':
-            	$exp = '/^[0-9]{1,255}$/';
+            	$exp = '/^[0-9]{0,255}$/';
             	return $exp;
             break;
             case '6':
@@ -536,11 +539,11 @@ class Lunnatti {
             	return $exp;
             break;
             case '101':
-                $exp = '/^[0-9]{1,25}$/';
+                $exp = '/^[0-9]{0,25}$/';
                 return $exp;
             break;
             case '102':
-                $exp = '/^[a-zA-Z]{2,25}$/';
+                $exp = '/^[a-zA-Z]{0,25}$/';
                 return $exp;
             break;
             case '103':
@@ -548,15 +551,15 @@ class Lunnatti {
                 return $exp;
             break;
             case '104':
-                $exp = '/^[a-zA-Z]{2,25}+[ ]+[a-zA-Z]{2,25}$/';
+                $exp = '/^[a-zA-Z]{2,25}+[ ]+[a-zA-Z]{0,25}$/';
                 return $exp;
             break;
             case '105':
-                $exp = '/^[a-zA-Z]{6,25}$/';
+                $exp = '/^[a-zA-Z]{0,25}$/';
                 return $exp;
             break;
             case '106':
-                $exp = '/^[a-zA-Z0-9!@#$%^&*()_+= ]{1,50}$/';
+                $exp = '/^[a-zA-Z0-9!@#$%^&*()_+= ]{0,50}$/';
                 return $exp;
             break;
             case '107':
@@ -564,43 +567,43 @@ class Lunnatti {
                 return $exp;
             break;
             case '108':
-                $exp = '/^[a-zA-Z0-9!@#$^&*()_+=.!,? ]{2,50}$/';
+                $exp = '/^[a-zA-Z0-9!@#$^&*()_+=.!,? ]{0,50}$/';
                 return $exp;
             break;
             case '109':
-                $exp = '/^[a-zA-Z0-9!@#$^&*()_+=.!,? ]{2,250}$/';
+                $exp = '/^[a-zA-Z0-9!@#$^&*()_+=.!,? ]{0,250}$/';
                 return $exp;
             break;
             case '110':
-                $exp = '/^[0-9+()-xX ]{2,25}$/';
+                $exp = '/^[0-9+()-xX ]{0,25}$/';
                 return $exp;
             break;
             case '111':
-                $exp = '/^www+[.]+[a-zA-Z0-9]{2,99}+[.]+[a-zA-Z.]{2,19}$/';
+                $exp = '/^www+[.]+[a-zA-Z0-9]{2,99}+[.]+[a-zA-Z.]{0,19}$/';
                 return $exp;
             break;
             case '112':
-                $exp = '/^[0-9.]{1,4}([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})$/';
+                $exp = '/^[0-9.]{0,4}([:]{0,1})([0-9]{0,4})([:]{0,1})([0-9]{0,4})$/';
                 return $exp;
             break;
             case '113':
-            	$exp = '/^[a-zA-Z0-9-_]{1,25}$/';
+            	$exp = '/^[a-zA-Z0-9-_]{0,25}$/';
             	return $exp;
             break;
             case '114':
-            	$exp = '/^[0-9]{1,15}$/';
+            	$exp = '/^[0-9]{0,15}$/';
             	return $exp;
             break;
             case '115':
-            	$exp = '/^[0-9]{1,255}([:]{1,1})([a-zA-Z0-9!@#$^&*()_+=.!,? ]{1,255})$/';
+            	$exp = '/^[0-9]{1,255}([:]{1,1})([a-zA-Z0-9!@#$^&*()_+=.!,? ]{0,255})$/';
             	return $exp;
             break;
             case '116':
-            	$exp = '/^[a-zA-Z0-9-_. ]{1,125}$/';
+            	$exp = '/^[a-zA-Z0-9-_. ]{0,125}$/';
             	return $exp;
             break;
             case '117':
-            	$exp = '/^[0-9-]{1,25}$/';
+            	$exp = '/^[0-9-]{0,25}$/';
             	return $exp;
             break;
             case '118':
@@ -608,34 +611,64 @@ class Lunnatti {
             	return $exp;
             break;
             case '119':
-            	$exp = '/^[0-9]{1,3}$/';
+            	$exp = '/^[0-9]{0,3}$/';
             	return $exp;
             break;
             case '120':
-            	$exp = '/^[0-9,.]{3,13}$/';
+            	$exp = '/^[0-9,.]{0,13}$/';
             	return $exp;
             break;
             case '201':
-            	$exp = '/^[a-zA-Z0-9.=&]{1,65}$/';
+            	$exp = '/^[a-zA-Z0-9.=&]{0,65}$/';
             	return $exp;
             break;
             case '202':
-            	$exp = '/^([A-Za-z0-9 \-,;\"\(\)\&]+(?:\'|&#0*39;\"\(\)\&)*)*[A-Za-z0-9 \-!,.?\"\(\)\&]{1,255}+$/';
+            	$exp = '/^([A-Za-z0-9 \-,;\"\(\)\&]+(?:\'|&#0*39;\"\(\)\&)*)*[A-Za-z0-9 \-!,.?\"\(\)\&@]{0,255}+$/';
             	return $exp;
             break;
             case '203':
-            	$exp = '/^([A-Za-z0-9 \-,;\"\(\)\&\n\r\s\<\/\>\:]+(?:\'|&#0*39;\"\(\)\&\n\r\s\<\/\>\:)*)*[A-Za-z0-9 \-!,.?\"\(\)\&\n\r\s\<\/\>\:]+$/';
+            	$exp = '/^([A-Za-z0-9 \-,;\"\(\)\&\n\r\s\<\/\>\:@]+(?:\'|&#0*39;\"\(\)\&\n\r\s\<\/\>\:)*)*[A-Za-z0-9 \-!,.?\"\(\)\&\n\r\s\<\/\>\:]{0,9999}+$/';
             	return $exp;
             break;
             case '999':
-            	$exp = '/^[0-9]{1}$/';
+            	$exp = '/^[0-9]{0,1}$/';
             	return $exp;
             break;
             default:
-                $exp = '/^[a-zA-Z0-9.=]{1,25}$/';
+                $exp = '/^[a-zA-Z0-9.=]{0,25}$/';
                 return $exp;
             break;
         }
+    }
+    private function crx($aa,$bb,$cc) {/*CRYPT (ie. $data = 'abcdefghijklmnopqrstuvwxyz'; $ccrypt = $this->crx('1',$data,'password'); $dcrypt = $this->crx('2',$ccrypt,'password'); echo('<br><br>CRYPTED:'.$ccrypt.'<br><br>DECRYPTED:'.$dcrypt.'<br><br>');)*/
+    	//a) crypt type 1)encrypt, 2)decrypt b)data c)cryptkey
+    	if($aa == '1') {
+    		$dat = $bb;
+    		$ivx = substr($cc,0,1).substr($cc,strlen($cc)-1,1);
+    		for($ivxi=0;$ivxi<4;$ivxi++) {
+    			$ivx .= $ivx;
+    		}
+    		$ivs = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256,MCRYPT_MODE_ECB);
+    		$ivv = mcrypt_create_iv($ivs,MCRYPT_RAND);
+    		$dat = mcrypt_encrypt(MCRYPT_RIJNDAEL_256,$ivx,$dat,MCRYPT_MODE_ECB,$ivv);
+    		return 	$dat;
+    	}
+    	if($aa == '2') {
+    		$dat = $bb;
+    		$ivx = substr($cc,0,1).substr($cc,strlen($cc)-1,1);
+    		for($ivxi=0;$ivxi<4;$ivxi++) {
+    			$ivx .= $ivx;
+    		}
+    		$ivs = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256,MCRYPT_MODE_ECB);
+    		$ivv = mcrypt_create_iv($ivs,MCRYPT_RAND);
+    		$dat = mcrypt_decrypt(MCRYPT_RIJNDAEL_256,$ivx,$dat,MCRYPT_MODE_ECB,$ivv);
+    		return $dat;
+    	}
+    }
+    private function upx($aa,$bb,$cc) {/*MAIL*/
+    	//a) email from b) email to c) email subject
+
+    	
     }
     private function dbi($aa,$bb) {/*DATABASE INTERFACE*/
     	//a) db type 1)mysql, 2)postgresql, 3)Oracle  b) SQL
@@ -656,7 +689,8 @@ class Lunnatti {
     			break;
     	}
     }
-    private function dbn($aa,$bb) {/*DATABASE NAVIGATION*/
+    private function dbn($aa,$bb) {/*DATABASE NAVIGATION (ie. mysql_num_rows($result) while($row = mysql_fetch_array($result)) { $amisqk = $row['0'] } Lunnatti::dbn($_SESSION['db'],$amisqk))*/
+    	//a) NAVCOMMAND [1-11] b) NUM_ROWS | USE "LIMIT $_SESSION['dbb'],$_SESSION['dbr']" IN YOUR SQL STATEMENTS FOR DB NAV
     	if(!empty($_SERVER['HTTP_REFERER'])) {
     		if($_SESSION['dx'] == '') {
     			$aa = $_SERVER['HTTP_REFERER'];
@@ -1084,13 +1118,13 @@ class Lunnatti {
 	    						break;
 	    						case 'd02':
 	    							if($_SESSION['seclvl'] == '0') {
-		    							$amisql = Lunnatti::dbi('1','SELECT COUNT(*) FROM account WHERE BINARY email=\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\' OR BINARY userid=\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\'');
+		    							$amisql = $this->dbi('1','SELECT COUNT(*) FROM account WHERE BINARY email=\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\' OR BINARY userid=\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\'');
 		    							if(is_resource($amisql)) {
 		    								while($row = mysql_fetch_array($amisql)) {
 		    									if($row['0'] == '0') {
 		    										$_SESSION['d_sys_status'] = '1';
-		    										$amisql = Lunnatti::dbi('1','INSERT INTO account (seclvl,secmsg,seckey,secipl,email,userid,passwd,cashier) values (\'1\',\'1\',\''.openssl_random_pseudo_bytes(15).'\',\''.$_SERVER['REMOTE_ADDR'].'\',\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\',\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\',\''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\',\'25.00\')');
-		    										$amisql = Lunnatti::dbi('1','SELECT * FROM account WHERE BINARY userid=\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\' AND BINARY passwd=\''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\'');
+		    										$amisql = $this->dbi('1','INSERT INTO account (seclvl,secmsg,seckey,secipl,email,userid,passwd,cashier) values (\'1\',\'1\',\''.openssl_random_pseudo_bytes(15).'\',\''.$_SERVER['REMOTE_ADDR'].'\',\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\',\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\',\''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\',\'25.00\')');
+		    										$amisql = $this->dbi('1','SELECT * FROM account WHERE BINARY userid=\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\' AND BINARY passwd=\''.$_SESSION['d02_usrpd_3_1_106_3_1_1'].'\'');
 		    										while($row = mysql_fetch_array($amisql)) {
 		    											$_SESSION['secact'] = $row['acct'];
 		    											$_SESSION['seclvl'] = $row['seclvl'];
@@ -1123,7 +1157,29 @@ class Lunnatti {
 	    							}
 	    						break;
 	    						case 'd04':
-	    							
+	    							$d04 = 0;
+	    							if($_SESSION['d04_bname_1_1_109_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your First Name can\'t be left empty...</span><br>');
+	    							} else {
+	    								$d04++;
+	    							}
+	    							if($_SESSION['d04_email_2_1_202_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your Email can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d04_email_2_1_202_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx(103),$_SESSION['d04_email_2_1_202_2_1_1'])) {
+	    									echo('<span id="status">Your Email must be in the correct format...</span><br>');
+	    								} else {
+	    									$d04++;
+	    								}
+	    							}
+	    							if($_SESSION['d04_descr_3_1_203_6_1_1'] == NULL) {
+	    								echo('<span id="status">Your Question can\'t be left empty...</span><br>');
+	    							} else {
+	    								$d04++;
+	    							}
+	    							if($d04 == 3) {
+	    								echo('<span id="success">Your email has been sent...</span>');
+	    							}
 	    						break;
 	    						case 'd05':
 	    							
