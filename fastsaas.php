@@ -198,6 +198,8 @@ class Lunnatti {
         $this->qva           = '';
         $this->vrs =   array(
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'vu','vl'=>'','bg'=>'','vi'=>'false','rx'=>'1','rt'=>'r'),
+        					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'vur','vl'=>'','bg'=>'','vi'=>'false','rx'=>'1','rt'=>'s'),
+        					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'vuc','vl'=>'','bg'=>'','vi'=>'false','rx'=>'1','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'rq','vl'=>'','bg'=>'','vi'=>'false','rx'=>'5','rt'=>'r'),
         					 array('pg'=>'0','sl'=>'1','pd'=>'','vr'=>'pd','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'999','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'dbb','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'4','rt'=>'s'),
@@ -208,7 +210,7 @@ class Lunnatti {
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_code','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_data','vl'=>array(),'bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_rgx','vl'=>array(),'bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_out','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'d_sys_out','vl'=>array(),'bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'qry_last','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'qvo_last','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'qvo_lall','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
@@ -227,6 +229,7 @@ class Lunnatti {
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_bname_1_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_email_2_1_202_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_descr_3_1_203_6_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'3:1:1','sl'=>'','pd'=>'','vr'=>'d05_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'9999','sl'=>'','pd'=>'','vr'=>'d9999_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s')
                              );
         $this->qvc           = count($this->qv);
@@ -500,17 +503,46 @@ class Lunnatti {
         $this->mldr();
     }
     private function mldr() {/*MODULE LOADER*/
+    	$this->vue();
         $this->mod5();
         $this->loc();
     }
-    private function vue() {/*CURRENT VIEW IF $_SERVER['HTTP_REFERER'] EXISTS (IE.VU=2:1:1 returns 2:1:1)*/
-    	@$url = explode('vu=',$_SERVER['HTTP_REFERER']);
-    	@$urli = $url['1'];
-    	if(strpos($urli,'&')) {
-    		$x = explode('&',$urli);
-    		$urli = $x['1'];
+    private function vue() {/*CURRENT VIEW (ie. $_SESSION['vur'] = $_SERVER['HTTP_REFERER'];$_SESSION['vuc'] = $_GET['vu'])*/
+    	if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != NULL) {
+    		$htr = $_SERVER['HTTP_REFERER'];
+    	} else {
+    		$htr = 'fastsaas.php?vu=0:0&rq=123';
     	}
-    	return $urli;
+    	$url1 = explode('vu=',$htr);
+    	$url2 = explode('vu=',$_SERVER['QUERY_STRING']);
+    	if(!empty($url1['1'])) {
+    		$urli1 = $url1['1']; 
+    	}
+    	if(isset($urli1)) {
+	    	if(strpos($urli1,'&')) {
+	    		$x = explode('&',$urli1);
+	    		$urli1 = $x['0'];
+	    	}
+    	}
+    	if(!empty($url2['1'])) {
+    		$urli2 = $url2['1'];
+    	}
+    	if(isset($urli2)) {
+	    	if(strpos($urli2,'&')) {
+	    		$x = explode('&',$urli2);
+	    		$urli2 = $x['1'];
+	    	}
+    	}
+    	if(isset($urli1)) { 
+    		$_SESSION['vur'] = $urli1;
+    	} else{
+    		$_SESSION['vur'] = '';
+    	}
+    	if(isset($urli2)) {
+    		$_SESSION['vuc'] = $urli2;
+    	} else {
+    		$_SESSION['vuc'] = '';
+    	}
     }
     private function rgx($aa) {/*REG EXPRESSION PATTERNS*/
         switch($aa) {
@@ -665,10 +697,9 @@ class Lunnatti {
     		return $dat;
     	}
     }
-    private function upx($aa,$bb,$cc) {/*MAIL*/
-    	//a) email from b) email to c) email subject
-
-    	
+    private function upx($aa,$bb,$cc,$dd) {/*MAIL*/
+    	//a) email to b) subject c) comment d) email from
+		mail($aa,$bb,$cc,'From:'.$dd);
     }
     private function dbi($aa,$bb) {/*DATABASE INTERFACE*/
     	//a) db type 1)mysql, 2)postgresql, 3)Oracle  b) SQL
@@ -891,6 +922,7 @@ class Lunnatti {
     	$amix  = 0;
     	$amiy  = 0;
     	$amio  = '';
+    	$dsi   = count($_SESSION['d_sys_out']);
     	foreach($_SESSION as $svar=>$sval) {
     		if(preg_match('/^(d+[0-9]{2,4}+[_]+[a-z-]{1,25}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}).*?(?:[a-z0-9_-])?$/',$svar)) {
     			$amx = explode('_',$svar);
@@ -1178,11 +1210,27 @@ class Lunnatti {
 	    								$d04++;
 	    							}
 	    							if($d04 == 3) {
-	    								echo('<span id="success">Your email has been sent...</span>');
+	    								echo('<span id="success">Preparing to send your email...</span>');
+	    								$_SESSION['d_sys_out']['0'] = array('d04_bname_1_1_109_2_1_1'=>$_SESSION['d04_bname_1_1_109_2_1_1']);
+	    								$_SESSION['d_sys_out']['1'] = array('d04_email_2_1_202_2_1_1'=>$_SESSION['d04_email_2_1_202_2_1_1']);
+	    								$_SESSION['d_sys_out']['2'] = array('d04_descr_3_1_203_6_1_1'=>$_SESSION['d04_descr_3_1_203_6_1_1']);
 	    							}
 	    						break;
 	    						case 'd05':
-	    							
+	    							switch($_SESSION['d05_data_1_1_999_1_2_1']) {
+	    								case '1':
+	    									$_SESSION['d05_data_1_1_999_1_2_1'] = 2;
+	    									header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    									exit;
+	    								break;
+	    								case '2':
+	    									if($dsi > 0) {
+	    										//$this->upx('vipstudios@gmx.com','mail',$_SESSION['d_sys_out']['2']['d04_descr_3_1_203_6_1_1'],$_SESSION['d_sys_out']['1']['d04_email_2_1_202_2_1_1']);
+	    										//unset($_SESSION['d_sys_out']);$_SESSION['d_sys_out']=array();
+	    										echo('<span id="success">Sending your email...</span>');
+	    									}
+	    								break;
+	    							}
 	    						break;
 	    						///DYNAMIC OBJECTS
 	    						case 'd9999'://LOGOUT;{>
