@@ -699,7 +699,13 @@ class Lunnatti {
     }
     private function upx($aa,$bb,$cc,$dd) {/*MAIL*/
     	//a) email to b) subject c) comment d) email from
-		mail($aa,$bb,$cc,'From:'.$dd);
+		$to      = $aa;
+		$subject = $bb;
+		$message = $cc;
+		$headers = 'From: '.$dd.'' . "\r\n" .
+    			   'Reply-To: '.$dd.'' . "\r\n" .
+    			   'X-Mailer: PHP/' . phpversion();
+		mail($to, $subject, $message, $headers);
     }
     private function dbi($aa,$bb) {/*DATABASE INTERFACE*/
     	//a) db type 1)mysql, 2)postgresql, 3)Oracle  b) SQL
@@ -839,7 +845,7 @@ class Lunnatti {
     	echo('</td></tr>');
     	echo('</table>');
     }
-    private function dbq($aa) {/*DATABASE QUESTION Lunnatti::dbq('Would you like to make a deposit?'); RETURNS YES OR NO FORM WITH RADIO BUTTONS*/
+    private function dbq($aa) {/*DATABASE QUESTION $this->dbq('Would you like to make a deposit?'); RETURNS YES OR NO FORM WITH RADIO BUTTONS*/
     	if(isset($_POST['dbq'])) {
     		if(isset($_SESSION['dbq'])) {
     			switch($_POST['dbq']) {
@@ -895,7 +901,7 @@ class Lunnatti {
     	echo('</form>');
     	echo('<tr><td colspan="2">');
     }
-    private function fsp($aa,$bb) {/*FIELD SPACE Lunnatti::fsp($row['name'],'30'); ADDS A SPACE EVERY 30 CHARS, PREVENTS LONG STRINGS RUINING VIEW LAYOUT ON MOBILE (IE. thisIsAReallyLongBusinessNameThatWouldMuckUpAPageViewBadly)*/
+    private function fsp($aa,$bb) {/*FIELD SPACE $this->fsp($row['name'],'30'); ADDS A SPACE EVERY 30 CHARS, PREVENTS LONG STRINGS RUINING VIEW LAYOUT ON MOBILE (IE. thisIsAReallyLongBusinessNameThatWouldMuckUpAPageViewBadly)*/
     	$ns  = $aa;
     	$nsx = explode(' ',$ns);
     	$nsy = count($nsx);
@@ -1211,9 +1217,9 @@ class Lunnatti {
 	    							}
 	    							if($d04 == 3) {
 	    								echo('<span id="success">Preparing to send your email...</span>');
-	    								$_SESSION['d_sys_out']['0'] = array('d04_bname_1_1_109_2_1_1'=>$_SESSION['d04_bname_1_1_109_2_1_1']);
-	    								$_SESSION['d_sys_out']['1'] = array('d04_email_2_1_202_2_1_1'=>$_SESSION['d04_email_2_1_202_2_1_1']);
-	    								$_SESSION['d_sys_out']['2'] = array('d04_descr_3_1_203_6_1_1'=>$_SESSION['d04_descr_3_1_203_6_1_1']);
+	    								$_SESSION['d_sys_out']['0'] = $_SESSION['d04_bname_1_1_109_2_1_1'];
+	    								$_SESSION['d_sys_out']['1'] = $_SESSION['d04_email_2_1_202_2_1_1'];
+	    								$_SESSION['d_sys_out']['2'] = $_SESSION['d04_descr_3_1_203_6_1_1'];
 	    							}
 	    						break;
 	    						case 'd05':
@@ -1225,8 +1231,8 @@ class Lunnatti {
 	    								break;
 	    								case '2':
 	    									if($dsi > 0) {
-	    										//$this->upx('vipstudios@gmx.com','mail',$_SESSION['d_sys_out']['2']['d04_descr_3_1_203_6_1_1'],$_SESSION['d_sys_out']['1']['d04_email_2_1_202_2_1_1']);
-	    										//unset($_SESSION['d_sys_out']);$_SESSION['d_sys_out']=array();
+	    										$this->upx('vipstudios@gmx.com','Apps',$_SESSION['d_sys_out']['2'],$_SESSION['d_sys_out']['1']);
+	    										unset($_SESSION['d_sys_out']);
 	    										echo('<span id="success">Sending your email...</span>');
 	    									}
 	    								break;
