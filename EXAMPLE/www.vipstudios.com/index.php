@@ -210,7 +210,7 @@ border-style: solid;
 position: relative;	
 }
 div.notSiri {
-margin: 53px 0px 0px 5px;
+margin: 68px 0px 0px 5px;
 padding: 0px 0px 0px 0px;
 width: 300px;
 height: 45px;
@@ -247,7 +247,7 @@ height: 100%;
 opacity: 1.0;
 }
 div.acontent {
-margin: 75px auto 0px auto;
+margin: 90px auto 0px auto;
 padding: 3px 3px 3px 3px;
 width: 300px;
 height: 300px;
@@ -271,7 +271,7 @@ overflow-x: hidden;
 overflow-y: hidden;
 }
 div.bcontent {
-margin: 395px auto 0px auto;
+margin: 410px auto 0px auto;
 padding: 3px 3px 3px 3px;
 width: 300px;
 height: 300px;
@@ -295,7 +295,7 @@ overflow-x: hidden;
 overflow-y: scroll;
 }
 div.ccontent {
-margin: 715px auto 0px auto;
+margin: 730px auto 0px auto;
 padding: 3px 3px 3px 3px;
 width: 300px;
 height: 300px;
@@ -319,7 +319,7 @@ overflow-x: hidden;
 overflow-y: scroll;
 }
 div.dcontent {
-margin: 75px auto 0px auto;
+margin: 90px auto 0px auto;
 padding: 3px 3px 3px 3px;
 width: 300px;
 height: 300px;
@@ -344,7 +344,7 @@ overflow-y: hidden;
 display: none;
 }
 div.econtent {
-margin: 75px auto 0px auto;
+margin: 90px auto 0px auto;
 padding: 3px 3px 3px 3px;
 width: 300px;
 height: 300px;
@@ -367,6 +367,21 @@ text-align: left;
 overflow-x: hidden;
 overflow-y: hidden;
 display: none;
+}
+div.emailMe {
+margin: 49px 0px 0px 5px;
+padding: 3px 3px 3px 3px;
+width: 120px;
+height: 12px;
+vertical-align: top;
+text-align: center;
+position: fixed;
+z-index: 99;
+background-color: #000000;
+-webkit-opacity: 0.2;
+-moz-opacity: 0.2;
+-o-opacity: 0.2;
+opacity: 0.2;
 }
 div.SocialBar {
 margin: auto auto 5px 5px;
@@ -490,15 +505,31 @@ border-color: #FF0000;
 border-style: solid;
 position: relative;
 }
+span.f_arial10 {
+font-family: Arial;
+font-size: 10px;		
+}
+span.f_arial11 {
+font-family: Arial;
+font-size: 11px;		
+}
 span.f_arial12 {
 font-family: Arial;
 font-size: 12px;		
+}
+span.f_arial13 {
+font-family: Arial;
+font-size: 13px;		
 }
 span.f_arial14 {
 font-family: Arial;
 font-size: 14px;		
 }
-span.f_arial12 {
+span.f_arial15 {
+font-family: Arial;
+font-size: 15px;		
+}
+span.f_arial16 {
 font-family: Arial;
 font-size: 16px;		
 }
@@ -702,6 +733,8 @@ echo('</ul>');
 echo('</span></span>');
 
 echo('</div>');
+
+echo('<div class="emailMe" id="emailMe"><a href="mailto:vipstudios@gmx.com" style="font-size: 10px; vertical-align: top;">vipstudios@gmx.com</a></div>');
 
 echo('<div class="notSiri" id="notSiri">');
 
