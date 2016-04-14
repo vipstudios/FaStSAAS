@@ -881,22 +881,37 @@ class Lunnatti {
     			echo('</td><td style="vertical-align: middle; text-align: right; width:25%">');
     			switch($_SESSION['dbq']) {
     				case '1':
-    					echo('&#160;Yes&#160;&#160;&#160;');
-    					echo('<input type="radio" name="dbq" id="dbq" value="1" style="border:0px;" checked><br>');
-    					echo('&#160;No&#160;&#160;&#160;');
-    					echo('<input type="radio" name="dbq" id="dbq" value="2" style="border:0px;"><br>');
+    					echo('<table border="0" cellpadding="0" cellspacing="0" width="100%">');
+    					echo('<tr>');
+    					echo('<td style="vertical-align: middle; text-align: center;">&#160;Yes&#160;&#160;&#160;</td>');
+    					echo('<td style="vertical-align: middle; text-align: center;"><input type="radio" name="dbq" id="dbq" value="1" style="border:0px;" checked></td>');
+    					echo('</tr><tr>');
+    					echo('<td style="vertical-align: middle; text-align: center;">&#160;No&#160;&#160;&#160;</td>');
+    					echo('<td style="vertical-align: middle; text-align: center;"><input type="radio" name="dbq" id="dbq" value="2" style="border:0px;"></td>');
+    					echo('</tr>');
+    					echo('</table>');
     				break;
     				case '2':
-    					echo('&#160;Yes&#160;&#160;&#160;');
-    					echo('<input type="radio" name="dbq" id="dbq" value="1" style="border:0px;"><br>');
-    					echo('No&#160;&#160;&#160;');
-    					echo('<input type="radio" name="dbq" id="dbq" value="2" style="border:0px;" checked><br>');
+    					echo('<table border="0" cellpadding="0" cellspacing="0" width="100%">');
+    					echo('<tr>');
+    					echo('<td style="vertical-align: middle; text-align: center;">&#160;Yes&#160;&#160;&#160;</td>');
+    					echo('<td style="vertical-align: middle; text-align: center;"><input type="radio" name="dbq" id="dbq" value="1" style="border:0px;"></td>');
+    					echo('</tr><tr>');
+    					echo('<td style="vertical-align: middle; text-align: center;">No&#160;&#160;&#160;</td>');
+    					echo('<td style="vertical-align: middle; text-align: center;"><input type="radio" name="dbq" id="dbq" value="2" style="border:0px;" checked></td>');
+    					echo('</tr>');
+    					echo('</table>');
     				break;
     				default:
-    					echo('&#160;Yes&#160;&#160;&#160;');
-    					echo('<input type="radio" name="dbq" id="dbq" value="1" style="border:0px;"><br>');
-    					echo('&#160;No</span>&#160;&#160;&#160;');
-    					echo('<input type="radio" name="dbq" id="dbq" value="2" style="border:0px;"><br>');
+    					echo('<table border="0" cellpadding="0" cellspacing="0" width="100%">');
+    					echo('<tr>');
+    					echo('<td style="vertical-align: middle; text-align: center;">&#160;Yes&#160;&#160;&#160;</td>');
+    					echo('<td style="vertical-align: middle; text-align: center;"><input type="radio" name="dbq" id="dbq" value="1" style="border:0px;"></td>');
+    					echo('</tr><tr>');
+    					echo('<td style="vertical-align: middle; text-align: center;">&#160;No</span>&#160;&#160;&#160;</td>');
+    					echo('<td style="vertical-align: middle; text-align: center;"><input type="radio" name="dbq" id="dbq" value="2" style="border:0px;"></td>');
+    					echo('</tr>');	
+    					echo('</table>');
     				break;
     			}
     			echo('</td></tr>');
@@ -971,7 +986,7 @@ class Lunnatti {
     		if(preg_match('/^(d+[0-9]{2,4}+[_]+[a-z-]{1,25}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}+[_]+[0-9]{1,3}).*?(?:[a-z0-9_-])?$/',$svar)) {
     			$amx = explode('_',$svar);
     			if(substr($amx['1'],0,4) == 'data') {
-    				if(preg_match(Lunnatti::rgx($amx['4']),$_SESSION[$svar])) {
+    				if(preg_match($this->rgx($amx['4']),$_SESSION[$svar])) {
     					$_SESSION[$svar] = $sval;
     					foreach($_SESSION['d_sys_rgx'] as $avar=>$aval) {
     						if($avar == $svar) {
@@ -996,7 +1011,7 @@ class Lunnatti {
 	    						$_SESSION['ul'] = '';
 	    						switch($rd4['0']) {
 	    							case '2:3:3':
-	    								$amisql = Lunnatti::dbi('1','UPDATE directory SET img=\'\' WHERE BINARY acct=\''.$_SESSION['secact'].'\' AND BINARY uid=\''.$_SESSION['d11_dataa_1_1_5_999_1_1'].'\'');
+	    								$amisql = $this->dbi('1','UPDATE directory SET img=\'\' WHERE BINARY acct=\''.$_SESSION['secact'].'\' AND BINARY uid=\''.$_SESSION['d11_dataa_1_1_5_999_1_1'].'\'');
 	    								$_SESSION['d10_dataa_1_1_999_1_2_1'] = '0';
 	    								$_SESSION['d_sys_data'] = '';
 	    								header('Location:'.$_SERVER['PHP_SELF'].'?vu=2:3:3');
@@ -1024,7 +1039,7 @@ class Lunnatti {
     					}
     				}
     			}
-    			if($amx['3'] == '2' && preg_match(Lunnatti::rgx($amx['4']),$_SESSION[$svar])) {
+    			if($amx['3'] == '2' && preg_match($this->rgx($amx['4']),$_SESSION[$svar])) {
     				$_SESSION[$svar] = $sval;
     				foreach($_SESSION['d_sys_rgx'] as $avar=>$aval) {
     					if($avar == $svar) {
@@ -1034,7 +1049,7 @@ class Lunnatti {
     			}
     			foreach($_POST as $pvar=>$pval) {
     				if($pvar == $svar) {
-    					if(preg_match(Lunnatti::rgx($amx['4']),$_POST[$svar])) {
+    					if(preg_match($this->rgx($amx['4']),$_POST[$svar])) {
     						$_SESSION[$svar] = $_POST[$svar];
     						$ami++;
     						foreach($_SESSION['d_sys_rgx'] as $avar=>$aval) {
@@ -1203,7 +1218,7 @@ class Lunnatti {
 	    					switch($arr3val['obj']) {
 	    						case 'd01':
 	    							if($_SESSION['seclvl'] == '0') {
-		    							$amisql = Lunnatti::dbi('1','SELECT * FROM account WHERE BINARY userid = \''.$_SESSION['d01_usrid_1_1_113_2_1_1'].'\' AND BINARY passwd = \''.$_SESSION['d01_usrpd_2_1_106_3_1_1'].'\'');
+		    							$amisql = $this->dbi('1','SELECT * FROM account WHERE BINARY userid = \''.$_SESSION['d01_usrid_1_1_113_2_1_1'].'\' AND BINARY passwd = \''.$_SESSION['d01_usrpd_2_1_106_3_1_1'].'\'');
 		    							if(mysql_num_rows($amisql) > 0) {
 		    								while($row = mysql_fetch_array($amisql)) {
 		    									$_SESSION['secact'] = $row['acct'];
@@ -1212,7 +1227,7 @@ class Lunnatti {
 		    									$_SESSION['seceml'] = $row['email'];
 		    									$_SESSION['secusr'] = $row['userid'];
 		    								}
-		    								Lunnatti::dbi('1','UPDATE account SET secipl = \''.$_SERVER['REMOTE_ADDR'].'\' WHERE acct = \''.$_SESSION['secact'].'\' LIMIT 1');
+		    								$this->dbi('1','UPDATE account SET secipl = \''.$_SERVER['REMOTE_ADDR'].'\' WHERE acct = \''.$_SESSION['secact'].'\' LIMIT 1');
 		    								echo('<span id="success">Logging you in...</span>');
 		    							} else {
 		    								$_SESSION['d_sys_rgx']['d01_usrid_1_1_113_2_1_1'] = '0';
@@ -1961,7 +1976,7 @@ class Lunnatti {
 		    						} elseif($am4['3'] == '2') {
 		    							echo('<select name="'.$am3['0'].'" id="'.$am3['0'].'" onChange="javascript:this.form.submit();" style="width:160px;height:25px;" disabled>');
 		    						}
-		    						$amisql = Lunnatti::dbi('1','SELECT * FROM directory WHERE BINARY acct=\''.$_SESSION['secact'].'\' LIMIT '.$_SESSION['dbb'].','.$_SESSION['dbr'].'');
+		    						$amisql = $this->dbi('1','SELECT * FROM directory WHERE BINARY acct=\''.$_SESSION['secact'].'\' LIMIT '.$_SESSION['dbb'].','.$_SESSION['dbr'].'');
 		    						if($_SESSION[$am3['0']] == '') {
 		    							echo('<option value="#" selected>Choose a profile:</option>');
 		    						} else {
