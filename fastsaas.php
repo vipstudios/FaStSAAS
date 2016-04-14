@@ -230,6 +230,7 @@ class Lunnatti {
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_email_2_1_202_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_descr_3_1_203_6_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1:1','sl'=>'','pd'=>'','vr'=>'d05_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'4:1','sl'=>'','pd'=>'','vr'=>'d06_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'9999','sl'=>'','pd'=>'','vr'=>'d9999_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s')
                              );
         $this->qvc           = count($this->qv);
@@ -663,7 +664,7 @@ class Lunnatti {
             	return $exp;
             break;
             case '999':
-            	$exp = '/^[0-9]{0,1}$/';
+            	$exp = '/^[0-9]{0,2}$/';
             	return $exp;
             break;
             default:
@@ -726,7 +727,7 @@ class Lunnatti {
     			break;
     	}
     }
-    private function dbn($aa,$bb) {/*DATABASE NAVIGATION (ie. mysql_num_rows($result) while($row = mysql_fetch_array($result)) { $amisqk = $row['0'] } Lunnatti::dbn($_SESSION['db'],$amisqk))*/
+    private function dbn($aa,$bb) {/*DATABASE NAVIGATION (ie. mysql_num_rows($result) while($row = mysql_fetch_array($result)) { $amisqk = $row['0'] } $this->dbn($_SESSION['db'],$amisqk))*/
     	//a) NAVCOMMAND [1-11] b) NUM_ROWS | USE "LIMIT $_SESSION['dbb'],$_SESSION['dbr']" IN YOUR SQL STATEMENTS FOR DB NAV
     	if(!empty($_SERVER['HTTP_REFERER'])) {
     		if($_SESSION['dx'] == '') {
@@ -845,7 +846,8 @@ class Lunnatti {
     	echo('</td></tr>');
     	echo('</table>');
     }
-    private function dbq($aa) {/*DATABASE QUESTION $this->dbq('Would you like to make a deposit?'); RETURNS YES OR NO FORM WITH RADIO BUTTONS*/
+    private function dbq($aa,$bb) {/*DATABASE QUESTION $this->dbq('Would you like to make a deposit?'); RETURNS YES OR NO FORM WITH RADIO BUTTONS*/
+    	//a)Form Type b)Question
     	if(isset($_POST['dbq'])) {
     		if(isset($_SESSION['dbq'])) {
     			switch($_POST['dbq']) {
@@ -870,36 +872,72 @@ class Lunnatti {
     			break;
     		}
     	}
-    	echo('<table border="0" cellpadding="2" cellspacing="0" style="width:100%;margin-top:10px;margin-bottom:10px;">');
-    	echo('<form name="dbr" id="dbr" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post">');
-    	echo('<tr><td valign="top" align="left" style="width:75%;">');
-    	echo('&#160;*&#160;'."$aa".'');
-    	echo('</td><td valign="top" align="right" style="width:25%">');
-    	switch($_SESSION['dbq']) {
+    	switch($aa) {
     		case '1':
-    			echo('&#160;Yes&#160;&#160;&#160;');
-    			echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>');
-    			echo('&#160;No&#160;&#160;&#160;');
-    			echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
-    			break;
+    			echo('<form name="dbq_f" id="dbq_f" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post">');
+    			echo('<table border="0" cellpadding="0" cellspacing="0" width="100%">');
+    			echo('<tr><td style="vertical-align: top; text-align: left; width: 75%;">');
+    			echo($bb);
+    			echo('</td><td style="vertical-align: middle; text-align: right; width:25%">');
+    			switch($_SESSION['dbq']) {
+    				case '1':
+    					echo('&#160;Yes&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="1" style="border:0px;" checked><br>');
+    					echo('&#160;No&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="2" style="border:0px;"><br>');
+    				break;
+    				case '2':
+    					echo('&#160;Yes&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="1" style="border:0px;"><br>');
+    					echo('No&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="2" style="border:0px;" checked><br>');
+    				break;
+    				default:
+    					echo('&#160;Yes&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="1" style="border:0px;"><br>');
+    					echo('&#160;No</span>&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="2" style="border:0px;"><br>');
+    				break;
+    			}
+    			echo('</td></tr>');
+    			echo('</table>');
+    			echo('</form>');
+    		break;
     		case '2':
-    			echo('&#160;Yes&#160;&#160;&#160;');
-    			echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
-    			echo('No&#160;&#160;&#160;');
-    			echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>');
-    			break;
-    		default:
-    			echo('&#160;Yes&#160;&#160;&#160;');
-    			echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
-    			echo('&#160;No</span>&#160;&#160;&#160;');
-    			echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
-    			break;
+    			echo('<table border="0" cellpadding="0" cellspacing="0" width="100%">');
+    			echo('<form name="dbq" id="dbq" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post">');
+    			echo('<tr><td valign="top" align="left" style="width:75%;">');
+    			echo('&#160;*&#160;'."$bb".'');
+    			echo('</td><td valign="top" align="right" style="width:25%">');
+    			switch($_SESSION['dbq']) {
+    				case '1':
+    					echo('&#160;Yes&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>');
+    					echo('&#160;No&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
+    					break;
+    				case '2':
+    					echo('&#160;Yes&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
+    					echo('No&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;" checked><br>');
+    					break;
+    				default:
+    					echo('&#160;Yes&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="1" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
+    					echo('&#160;No</span>&#160;&#160;&#160;');
+    					echo('<input type="radio" name="dbq" id="dbq" value="2" onDblCLick="javascript:switch(this.checked){case true:this.checked=false;break;case false:this.checked=true;break;};" style="border:0px;"><br>');
+    					break;
+    			}
+    			echo('</td></tr>');
+    			echo('<tr><td colspan="2" align="right">&#160;*&#160;Required Fields</td></tr>');
+    			echo('<tr><td colspan="2" align="right"><table border="0" cellpadding="0" cellspacing="0"><tr><td align="center" valign="top"><input type="submit" value="submit"></form></td><td align="center" valign="top"><form name="recycle_dbq" id="recycle_dbq" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="recycle_dbq" value="1"><input type="submit" value="clear"></form></td></tr></table></td></tr>');
+    			echo('</form>');
+    			echo('</tr></tr>');
+    			echo('</table>');
+    		break;
     	}
-    	echo('</td></tr>');
-    	echo('<tr><td colspan="2" align="right"><span style="color:'."$amcc".';font-family:Arial;font-size:10px;">* Required Fields</span></td></tr>');
-    	echo('<tr><td colspan="2" align="right"><table border="0" cellpadding="0" cellspacing="0"><tr><td align="center" valign="top"><input type="submit" value="submit"></form></td><td align="center" valign="top"><form name="recycle_dbq" id="recycle_dbq" action="'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'" method="post"><input type="hidden" name="recycle_dbq" value="1"><input type="submit" value="clear"></form></td></tr></table></td></tr>');
-    	echo('</form>');
-    	echo('<tr><td colspan="2">');
+
     }
     private function fsp($aa,$bb) {/*FIELD SPACE $this->fsp($row['name'],'30'); ADDS A SPACE EVERY 30 CHARS, PREVENTS LONG STRINGS RUINING VIEW LAYOUT ON MOBILE (IE. thisIsAReallyLongBusinessNameThatWouldMuckUpAPageViewBadly)*/
     	$ns  = $aa;
@@ -1129,6 +1167,37 @@ class Lunnatti {
     				/////////////////////////////////////////////////////////////////////////////
     				//DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJ
     				/////////////////////////////////////////////////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////                 //////////////////////////////
+    				///////////////////////////////               ///////////////////////////////
+    				////////////////////////////////             ////////////////////////////////
+    				/////////////////////////////////           /////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				///////////////////////////////////       ///////////////////////////////////
+    				////////////////////////////////////     ////////////////////////////////////
+    				/////////////////////////////////////   /////////////////////////////////////
+    				////////////////////////////////////// //////////////////////////////////////
+    				/////////////////////////////////////////////////////////////////////////////
+    				
     				foreach($arr3 as $arr3var => $arr3val) {
     					if($arr3val['obj'] == $amio) {
 	    					switch($arr3val['obj']) {
@@ -1238,6 +1307,97 @@ class Lunnatti {
 	    								break;
 	    							}
 	    						break;
+	    						case 'd06':
+	    							$ai = '<img src="./www-img/vipNotSiri.png" style="padding: 0px 2px 0px 0px;float: left;">@notSiri Says::&#160;';
+	    							switch($_SESSION['d06_data_1_1_999_1_2_1']) {
+	    								case '1':
+	    									$this->dbq('1',$ai.'"Would you like to create a WebApp?"');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '2';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '3';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									}
+	    								break;
+	    								case '2':
+	    									$_SESSION['dbq'] = '0';
+	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '4';
+	    									echo($ai.'<span id="success">Great, let\'s begin!</span>');
+	    								break;
+	    								case '3':
+	    									$_SESSION['dbq'] = '0';
+	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									echo($ai.'<span id="status">Then why are you bothering me?</span>');
+	    								break;
+	    								case '4':
+	    									$this->dbq('1',$ai.'<span id="success">"Is this an app you\'ve seen before?"</span>');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '5';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '6';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									}
+	    								break;
+	    								case '5':
+	    									$this->dbq('1',$ai.'<span id="success">Can you provide a link?"</span>');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '7';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '8';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									} else {
+	    										
+	    									}
+	    								break;
+	    								case '6':
+	    									$this->dbq('1',$ai.'<span id="success">Can you describe it?"</span>');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '9';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '10';
+	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+	    										exit;
+	    									}
+	    								break;
+	    								case '7'://yes;get url link
+	    									$_SESSION['dbq'] = '0';
+	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									echo($ai.'<span id="success">yes;get url link</span>');
+	    								break;
+	    								case '8'://no;why?
+	    									$_SESSION['dbq'] = '0';
+	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									echo($ai.'<span id="success">no;why?</span>');
+	    								break;
+	    								case '9'://yes;drop textarea
+	    									$_SESSION['dbq'] = '0';
+	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									echo($ai.'<span id="success">yes;drop textarea</span>');
+	    								break;
+	    								case '10'://no;why?
+	    									$_SESSION['dbq'] = '0';
+	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									echo($ai.'<span id="success">no;why</span>');
+	    								break;
+	    							}
+	    						break;
 	    						///DYNAMIC OBJECTS
 	    						case 'd9999'://LOGOUT;{>
 	    							switch($_SESSION['d9999_data_1_1_999_1_2_1']) {
@@ -1255,6 +1415,36 @@ class Lunnatti {
 	    					}
     					}
     				}
+    				/////////////////////////////////////////////////////////////////////////////
+    				////////////////////////////////////// //////////////////////////////////////
+    				/////////////////////////////////////   /////////////////////////////////////
+    				////////////////////////////////////     ////////////////////////////////////
+    				///////////////////////////////////       ///////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				/////////////////////////////////           /////////////////////////////////
+    				////////////////////////////////             ////////////////////////////////
+    				///////////////////////////////               ///////////////////////////////
+    				//////////////////////////////                 //////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
+    				//////////////////////////////////         //////////////////////////////////
     				/////////////////////////////////////////////////////////////////////////////
     				//DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJECTS,DYNAMIC OBJ
     				/////////////////////////////////////////////////////////////////////////////
