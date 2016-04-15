@@ -734,7 +734,7 @@ echo('</span></span>');
 
 echo('</div>');
 
-echo('<div class="emailMe" id="emailMe"><a href="mailto:vipstudios@gmx.com" style="font-size: 10px; vertical-align: top;">vipstudios@gmx.com</a></div>');
+echo('<div class="emailMe" id="emailMe"><a href="mailto:vipstudios@gmx.com" style="font-size: 10px; vertical-align: top; text-decoration: none;">vipstudios@gmx.com</a></div>');
 
 echo('<div class="notSiri" id="notSiri">');
 
