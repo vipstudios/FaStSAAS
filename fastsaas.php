@@ -714,9 +714,9 @@ class Lunnatti {
     		case 1:
     			$db   = array();
     			$db_a = 'localhost';
-    			$db_b = 'root';
-    			$db_c = 'pu871cP455w0rd_mysql';
-    			$db_d = 'vipstudios';
+    			$db_b = 'user';
+    			$db_c = 'password';
+    			$db_d = 'database';
     			$db_e = array();
     			$db = mysql_connect($db_a,$db_b,$db_c);
     			mysql_select_db($db_d,$db);
