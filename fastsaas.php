@@ -220,16 +220,16 @@ class Lunnatti {
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'seceml','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'secusr','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'logout','vl'=>'','bg'=>'','vi'=>'false','rx'=>'2','rt'=>'r'),
-        					 array('pg'=>'1:1','sl'=>'','pd'=>'','vr'=>'d01_usrid_1_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'1:1','sl'=>'','pd'=>'','vr'=>'d01_usrpd_2_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_email_1_1_103_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrid_2_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrpd_3_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'2:1','sl'=>'','pd'=>'','vr'=>'d03_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:1','sl'=>'','pd'=>'','vr'=>'d01_email_1_1_202_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 //array('pg'=>'1:1','sl'=>'','pd'=>'','vr'=>'d01_usrpd_2_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 //array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_email_1_1_103_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 //array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrid_2_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 //array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrpd_3_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 //array('pg'=>'2:1','sl'=>'','pd'=>'','vr'=>'d03_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_bname_1_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_email_2_1_202_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_descr_3_1_203_6_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'3:1:1','sl'=>'','pd'=>'','vr'=>'d05_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 //array('pg'=>'3:1:1','sl'=>'','pd'=>'','vr'=>'d05_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'4:1','sl'=>'','pd'=>'','vr'=>'d06_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'9999','sl'=>'','pd'=>'','vr'=>'d9999_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s')
                              );
@@ -714,7 +714,7 @@ class Lunnatti {
     		case 1:
     			$db   = array();
     			$db_a = 'localhost';
-    			$db_b = 'user';
+    			$db_b = 'username';
     			$db_c = 'password';
     			$db_d = 'database';
     			$db_e = array();
@@ -1217,6 +1217,7 @@ class Lunnatti {
     					if($arr3val['obj'] == $amio) {
 	    					switch($arr3val['obj']) {
 	    						case 'd01':
+	    							/*
 	    							if($_SESSION['seclvl'] == '0') {
 		    							$amisql = $this->dbi('1','SELECT * FROM account WHERE BINARY userid = \''.$_SESSION['d01_usrid_1_1_113_2_1_1'].'\' AND BINARY passwd = \''.$_SESSION['d01_usrpd_2_1_106_3_1_1'].'\'');
 		    							if(mysql_num_rows($amisql) > 0) {
@@ -1237,8 +1238,25 @@ class Lunnatti {
 	    							} elseif($_SESSION['seclvl'] == '1') {
 	    								echo('<span id="success">Logged in...</span>');
 	    							}
+	    							*/
+	    							if($_SESSION['d01_email_1_1_202_2_1_1'] == NULL) {
+	    								echo('<span id="status">You must provide an email address.</span>');
+	    							} elseif(!preg_match($this->rgx('103'),$_SESSION['d01_email_1_1_202_2_1_1'])) {
+	    								echo('<span id="status">Your email address must be in the correct format.</span>');
+	    							} else {
+	    								$amisqj = $this->dbi('1','SELECT COUNT(*) FROM email WHERE email=\''.$_SESSION['d01_email_1_1_202_2_1_1'].'\'');
+	    								while($row = mysql_fetch_array($amisqj)) {
+	    									$amisqk = $row['0'];
+	    								}
+	    								if($amisqk ==  0) {
+	    									$amisql = $this->dbi('1','INSERT INTO email (email,offers,signups,affid) values (\''.$_SESSION['d01_email_1_1_202_2_1_1'].'\',0,0,0)');
+	    								}
+	    								echo('<span id="status">Congratulations, You\'re signed up!</span>');
+	    							}
+	    							$_SESSION['d_sys_rgx']['d01_email_1_1_202_2_1_1'] = '0';
 	    						break;
 	    						case 'd02':
+	    							/*
 	    							if($_SESSION['seclvl'] == '0') {
 		    							$amisql = $this->dbi('1','SELECT COUNT(*) FROM account WHERE BINARY email=\''.$_SESSION['d02_email_1_1_103_2_1_1'].'\' OR BINARY userid=\''.$_SESSION['d02_usrid_2_1_113_2_1_1'].'\'');
 		    							if(is_resource($amisql)) {
@@ -1265,6 +1283,7 @@ class Lunnatti {
 	    							} elseif($_SESSION['seclvl'] == '1') {
 	    								echo('<span id="success">Logged in...</span>');
 	    							}
+	    							*/
 	    						break;//
 	    						///DYNAMIC OBJECTS
 	    						case 'd03':
@@ -1282,13 +1301,17 @@ class Lunnatti {
 	    							$d04 = 0;
 	    							if($_SESSION['d04_bname_1_1_109_2_1_1'] == NULL) {
 	    								echo('<span id="status">Your First Name can\'t be left empty...</span><br>');
-	    							} else {
-	    								$d04++;
+	    							} elseif($_SESSION['d04_bname_1_1_109_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('109'),$_SESSION['d04_bname_1_1_109_2_1_1'])) {
+	    									echo('<span id="status">Your Name must be in the correct format...</span><br>');
+	    								} else {
+	    									$d04++;
+	    								}
 	    							}
 	    							if($_SESSION['d04_email_2_1_202_2_1_1'] == NULL) {
 	    								echo('<span id="status">Your Email can\'t be left empty...</span><br>');
 	    							} elseif($_SESSION['d04_email_2_1_202_2_1_1'] != NULL) {
-	    								if(!preg_match($this->rgx(103),$_SESSION['d04_email_2_1_202_2_1_1'])) {
+	    								if(!preg_match($this->rgx('103'),$_SESSION['d04_email_2_1_202_2_1_1'])) {
 	    									echo('<span id="status">Your Email must be in the correct format...</span><br>');
 	    								} else {
 	    									$d04++;
@@ -1296,120 +1319,130 @@ class Lunnatti {
 	    							}
 	    							if($_SESSION['d04_descr_3_1_203_6_1_1'] == NULL) {
 	    								echo('<span id="status">Your Question can\'t be left empty...</span><br>');
-	    							} else {
-	    								$d04++;
+	    							} elseif($_SESSION['d04_descr_3_1_203_6_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('203'),$_SESSION['d04_descr_3_1_203_6_1_1'])) {
+	    									echo('<span id="status">Your Question must be in the correct format...</span><br>');
+	    								} else {
+	    									$d04++;
+	    								}
 	    							}
 	    							if($d04 == 3) {
-	    								echo('<span id="success">Preparing to send your email...</span>');
-	    								$_SESSION['d_sys_out']['0'] = $_SESSION['d04_bname_1_1_109_2_1_1'];
-	    								$_SESSION['d_sys_out']['1'] = $_SESSION['d04_email_2_1_202_2_1_1'];
-	    								$_SESSION['d_sys_out']['2'] = $_SESSION['d04_descr_3_1_203_6_1_1'];
+	    								echo('<span id="status">Thank you for your email...</span>');
+	    								$this->upx('vipstudios@gmx.com',$_SESSION['d04_bname_1_1_109_2_1_1'],$_SESSION['d04_descr_3_1_203_6_1_1'],$_SESSION['d04_email_2_1_202_2_1_1']);
 	    							}
+	    							unset($_SESSION['d04_bname_1_1_109_2_1_1'],$_SESSION['d04_email_2_1_202_2_1_1'],$_SESSION['d04_descr_3_1_203_6_1_1']);
+	    							$_SESSION['d_sys_rgx']['d04_bname_1_1_109_2_1_1'] = 0;
+	    							$_SESSION['d_sys_rgx']['d04_email_2_1_202_2_1_1'] = 0;
+	    							$_SESSION['d_sys_rgx']['d04_descr_3_1_203_6_1_1'] = 0;
 	    						break;
 	    						case 'd05':
-	    							switch($_SESSION['d05_data_1_1_999_1_2_1']) {
-	    								case '1':
-	    									$_SESSION['d05_data_1_1_999_1_2_1'] = 2;
-	    									header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    									exit;
-	    								break;
-	    								case '2':
-	    									if($dsi > 0) {
-	    										$this->upx('vipstudios@gmx.com','Apps',$_SESSION['d_sys_out']['2'],$_SESSION['d_sys_out']['1']);
-	    										unset($_SESSION['d_sys_out']);
-	    										echo('<span id="success">Sending your email...</span>');
-	    									}
-	    								break;
-	    							}
+	    							
 	    						break;
 	    						case 'd06':
 	    							$ai = '<img src="./www-img/vipNotSiri.png" style="padding: 0px 2px 0px 0px;float: left;">@notSiri Says::&#160;';
 	    							switch($_SESSION['d06_data_1_1_999_1_2_1']) {
 	    								case '1':
-	    									$this->dbq('1',$ai.'"Would you like to create a WebApp?"');
+	    									$this->dbq('1',$ai.'<span id="status">"Would you like to create a WebApp?"</span>');
 	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '2';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
-	    									} elseif($_SESSION['dbq'] == '2') {
+	    									}
+	    									if($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '3';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
 	    									}
 	    								break;
 	    								case '2':
-	    									$_SESSION['dbq'] = '0';
-	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '4';
-	    									echo($ai.'<span id="success">Great, let\'s begin!</span>');
+	    									$this->dbq('1',$ai.'"<span id="status">"Great, are you ready to begin?"</span>');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '4';
+	    									}
+	    									if($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									}
 	    								break;
 	    								case '3':
-	    									$_SESSION['dbq'] = '0';
-	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
-	    									echo($ai.'<span id="status">Then why are you bothering me?</span>');
+	    									$this->dbq('1',$ai.'<span id="status">"How about another time?"</span>');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									}
+	    									if($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '4';
+	    									}
 	    								break;
 	    								case '4':
-	    									$this->dbq('1',$ai.'<span id="success">"Is this an app you\'ve seen before?"</span>');
+	    									$this->dbq('1',$ai.'<span id="status">"Is this an app you\'ve seen before?"</span>');
 	    									if($_SESSION['dbq'] == '1') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '5';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
 	    									} elseif($_SESSION['dbq'] == '2') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '6';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
 	    									}
 	    								break;
 	    								case '5':
-	    									$this->dbq('1',$ai.'<span id="success">Can you provide a link?"</span>');
+	    									$this->dbq('1',$ai.'<span id="status">"Can you provide a link?"</span>');
 	    									if($_SESSION['dbq'] == '1') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '7';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
 	    									} elseif($_SESSION['dbq'] == '2') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '8';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
-	    									} else {
-	    										
 	    									}
 	    								break;
 	    								case '6':
-	    									$this->dbq('1',$ai.'<span id="success">Can you describe it?"</span>');
+	    									$this->dbq('1',$ai.'<span id="status">"Can you describe it?"</span>');
 	    									if($_SESSION['dbq'] == '1') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '9';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
 	    									} elseif($_SESSION['dbq'] == '2') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '10';
-	    										header('Location: '.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-	    										exit;
 	    									}
 	    								break;
 	    								case '7'://yes;get url link
-	    									$_SESSION['dbq'] = '0';
-	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
-	    									echo($ai.'<span id="success">yes;get url link</span>');
+	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									}
 	    								break;
-	    								case '8'://no;why?
-	    									$_SESSION['dbq'] = '0';
-	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
-	    									echo($ai.'<span id="success">no;why?</span>');
+	    								case '8'://no;why?					
+	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    									if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									}
 	    								break;
 	    								case '9'://yes;drop textarea
-	    									$_SESSION['dbq'] = '0';
-	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
-	    									echo($ai.'<span id="success">yes;drop textarea</span>');
+	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    								    if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									}
 	    								break;
 	    								case '10'://no;why?
-	    									$_SESSION['dbq'] = '0';
-	    									$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
-	    									echo($ai.'<span id="success">no;why</span>');
+	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    								    if($_SESSION['dbq'] == '1') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									} elseif($_SESSION['dbq'] == '2') {
+	    										$_SESSION['dbq'] = '0';
+	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
+	    									}
 	    								break;
 	    							}
 	    						break;
