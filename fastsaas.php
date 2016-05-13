@@ -1,22 +1,16 @@
 <?php
 //--Distributed under the MIT License./////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------------------------
-//--FaStSAAS v.3.1*"#HaulsAas!"
+//--FaStSAAS v.3.1
 //-----------------------------------------------------------------------------------------------------
-//--*FaStSAAS By James Schulze 06-06-2016 ;{>
-//--"Fast Software as a Service"
-//--
-//--Dynamic Objects allow you to do anything w/PHP.
-//--
-//--Create a login form object d01 on page vu=1:1 and a signup form d02 on page 1:2.
-//--
-//--Create a data loop on 2:1 that allows logged in members a home page or redirected to login.
-//--
-//--Pages are dynamic and can go up to vu=9999:9999:9999:9999:9999
-//--
-//--Drop fastsaas.php into a folder that can be protected from the www with mod_rewrite or rename index.php.
-//--
-//--Then make Jquery Ajax calls to include dynamic content into @ny div.
+//--FaStSAAS By James Schulze http://www.vipstudios.com 20160606
+//--            "Create a WebApp in minutes!"
+//--"Virtual Website API <-::-> Deliver Anything To Any Div"
+//--                     WebApp
+//--                      777
+//--                      151
+//--                      302
+//--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 //--
 //--Imagine making a virtual website with no template like so:
 //--
@@ -42,10 +36,6 @@
 //--patterns.
 //--
 //--Data Objects test true and will go straight into executing code in whatever loop you create.
-//--
-//--I used d01 as a login form, d02 for a signup form, d03 for a data loop for the Account Page so we could
-//--use d04 on index and if the goal is to query a db table and get a html template for advertising then we
-//--would do this like so:
 //--
 //--1) First you need to create all session variables in the constructor class $this->vrs (vrs=variables)
 //--
@@ -97,12 +87,21 @@
 //-- lname:Last Name,
 //-- wname:Full Name,
 //-- bname:Name,
+//-- rname:Your Name,
 //-- pname:Email or ID to send payment to,
 //-- ptrid:Transaction ID,
 //-- email:Email,
+//-- raddr:Your Address,
+//-- addrs:Address,
 //-- addra:Address 1,
 //-- addrb:Address 2,
+//-- cityy:City,
+//-- rcity:Your City,
+//-- state:State,
+//-- rstat:Your State,
 //-- zipce:Zip Code,
+//-- rzipc:Your Zip Code,
+//-- conta:Contact,
 //-- propn:Proposal Number,
 //-- subjf:Subject / Question,
 //-- usrid:User ID,
@@ -221,12 +220,23 @@ class Lunnatti {
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'secusr','vl'=>'0','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'0','sl'=>'','pd'=>'','vr'=>'logout','vl'=>'','bg'=>'','vi'=>'false','rx'=>'2','rt'=>'r'),
         					 array('pg'=>'1:1','sl'=>'','pd'=>'','vr'=>'d01_email_1_1_202_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 //array('pg'=>'1:1','sl'=>'','pd'=>'','vr'=>'d01_usrpd_2_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 //array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_email_1_1_103_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 //array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrid_2_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 //array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_usrpd_3_1_106_3_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_bname_1_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_addrs_2_1_116_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_cityy_3_1_116_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_state_4_1_116_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_zipce_5_1_117_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_phone_6_1_110_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_email_7_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_conta_8_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_rname_9_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_raddr_10_1_116_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_rcity_11_1_116_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_rstat_12_1_116_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_rzipc_13_1_117_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_rphne_14_1_110_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'1:2','sl'=>'','pd'=>'','vr'=>'d02_rmail_15_1_113_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 //array('pg'=>'2:1','sl'=>'','pd'=>'','vr'=>'d03_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
-        					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_bname_1_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
+        					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_nname_1_1_109_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_email_2_1_202_2_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 array('pg'=>'3:1','sl'=>'','pd'=>'','vr'=>'d04_descr_3_1_203_6_1_1','vl'=>'','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
         					 //array('pg'=>'3:1:1','sl'=>'','pd'=>'','vr'=>'d05_data_1_1_999_1_2_1','vl'=>'1','bg'=>'','vi'=>'false','rx'=>'','rt'=>'s'),
@@ -580,7 +590,7 @@ class Lunnatti {
                 return $exp;
             break;
             case '103':
-                $exp = '/^(([a-zA-Z0-9][-.\w]*[a-zA-Z_0-9])@([a-zA-Z0-9][-\w]*[a-zA-Z0-9]\.)+[a-zA-Z]{2,9})$/';
+                $exp = '/^(([a-zA-Z0-9][-.\w]*[a-zA-Z_0-9])@([a-zA-Z0-9][-\w]*[a-zA-Z0-9]\.)+[a-zA-Z]{0,99})$/';
                 return $exp;
             break;
             case '104':
@@ -620,7 +630,7 @@ class Lunnatti {
                 return $exp;
             break;
             case '113':
-            	$exp = '/^[a-zA-Z0-9-_]{0,25}$/';
+            	$exp = '/^[a-zA-Z0-9-_@.]{0,255}$/';
             	return $exp;
             break;
             case '114':
@@ -713,10 +723,14 @@ class Lunnatti {
     	switch($aa) {
     		case 1:
     			$db   = array();
-    			$db_a = 'localhost';
-    			$db_b = 'username';
-    			$db_c = 'password';
-    			$db_d = 'database';
+    			//$db_a = 'localhost';
+    			//$db_b = 'root';
+    			//$db_c = 'Wh1zb4ng9000W4rcr4ft_!_!';
+    			//$db_d = 'vipstudios';
+    			$db_a = 'db624035286.db.1and1.com';
+    			$db_b = 'dbo624035286';
+    			$db_c = 'SqlS3rv3rC3nt3rT3x45Y477_!_!';
+    			$db_d = 'db624035286';
     			$db_e = array();
     			$db = mysql_connect($db_a,$db_b,$db_c);
     			mysql_select_db($db_d,$db);
@@ -1284,8 +1298,163 @@ class Lunnatti {
 	    								echo('<span id="success">Logged in...</span>');
 	    							}
 	    							*/
-	    						break;//
-	    						///DYNAMIC OBJECTS
+	    							$d02 = 0;
+	    							if($_SESSION['d02_bname_1_1_109_2_1_1'] == NULL) {
+	    								echo('<span id="status">Business name can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_bname_1_1_109_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('109'),$_SESSION['d02_bname_1_1_109_2_1_1'])) {
+	    									echo('<span id="status">Business name must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_addrs_2_1_116_2_1_1'] == NULL) {
+	    								echo('<span id="status">Business address can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_addrs_2_1_116_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('116'),$_SESSION['d02_addrs_2_1_116_2_1_1'])) {
+	    									echo('<span id="status">Business address must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_cityy_3_1_116_2_1_1'] == NULL) {
+	    								echo('<span id="status">Business city can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_cityy_3_1_116_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('116'),$_SESSION['d02_cityy_3_1_116_2_1_1'])) {
+	    									echo('<span id="status">Business City must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_state_4_1_116_2_1_1'] == NULL) {
+	    								echo('<span id="status">Business state can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_state_4_1_116_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('116'),$_SESSION['d02_state_4_1_116_2_1_1'])) {
+	    									echo('<span id="status">Business state must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_zipce_5_1_117_2_1_1'] == NULL) {
+	    								echo('<span id="status">Business zip code can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_zipce_5_1_117_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('117'),$_SESSION['d02_zipce_5_1_117_2_1_1'])) {
+	    									echo('<span id="status">Business zip code must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_phone_6_1_110_2_1_1'] == NULL) {
+	    								echo('<span id="status">Business phone can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_phone_6_1_110_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('110'),$_SESSION['d02_phone_6_1_110_2_1_1'])) {
+	    									echo('<span id="status">Business phone must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_email_7_1_113_2_1_1'] == NULL) {
+	    								echo('<span id="status">Business email can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_email_7_1_113_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('113'),$_SESSION['d02_email_7_1_113_2_1_1'])) {
+	    									echo('<span id="status">Business email must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_conta_8_1_109_2_1_1'] == NULL) {
+	    								echo('<span id="status">Person to contact can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_conta_8_1_109_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('109'),$_SESSION['d02_conta_8_1_109_2_1_1'])) {
+	    									echo('<span id="status">Person to contact must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_rname_9_1_109_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your Name can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_rname_9_1_109_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('109'),$_SESSION['d02_rname_9_1_109_2_1_1'])) {
+	    									echo('<span id="status">Your Name must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_raddr_10_1_116_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your address can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_raddr_10_1_116_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('116'),$_SESSION['d02_raddr_10_1_116_2_1_1'])) {
+	    									echo('<span id="status">Your address must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_rcity_11_1_116_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your city can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_rcity_11_1_116_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('116'),$_SESSION['d02_rcity_11_1_116_2_1_1'])) {
+	    									echo('<span id="status">Your city must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_rstat_12_1_116_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your state can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_rstat_12_1_116_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('116'),$_SESSION['d02_rstat_12_1_116_2_1_1'])) {
+	    									echo('<span id="status">Your state must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_rzipc_13_1_117_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your zip code can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_rzipc_13_1_117_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('117'),$_SESSION['d02_rzipc_13_1_117_2_1_1'])) {
+	    									echo('<span id="status">Your zip code must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_rphne_14_1_110_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your phone can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_rphne_14_1_110_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('110'),$_SESSION['d02_rphne_14_1_110_2_1_1'])) {
+	    									echo('<span id="status">Your phone must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+	    							if($_SESSION['d02_rmail_15_1_113_2_1_1'] == NULL) {
+	    								echo('<span id="status">Your email can\'t be left empty...</span><br>');
+	    							} elseif($_SESSION['d02_rmail_15_1_113_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('113'),$_SESSION['d02_rmail_15_1_113_2_1_1'])) {
+	    									echo('<span id="status">Your email must be in the correct format...</span><br>');
+	    								} else {
+	    									$d02++;
+	    								}
+	    							}
+								if($d02 == 15) {
+								    $this->dbi('1','INSERT INTO makeMoney (bname,baddr,bcity,bstate,bzip,bphone,bemail,bcontact,yname,yaddr,ycity,ystate,yzip,yphone,yemail) values (\''.$_SESSION['d02_bname_1_1_109_2_1_1'].'\',\''.$_SESSION['d02_addrs_2_1_116_2_1_1'].'\',\''.$_SESSION['d02_cityy_3_1_116_2_1_1'].'\',\''.$_SESSION['d02_state_4_1_116_2_1_1'].'\',\''.$_SESSION['d02_zipce_5_1_117_2_1_1'].'\',\''.$_SESSION['d02_phone_6_1_110_2_1_1'].'\',\''.$_SESSION['d02_email_7_1_113_2_1_1'].'\',\''.$_SESSION['d02_conta_8_1_109_2_1_1'].'\',\''.$_SESSION['d02_rname_9_1_109_2_1_1'].'\',\''.$_SESSION['d02_raddr_10_1_116_2_1_1'].'\',\''.$_SESSION['d02_rcity_11_1_116_2_1_1'].'\',\''.$_SESSION['d02_rstat_12_1_116_2_1_1'].'\',\''.$_SESSION['d02_rzipc_13_1_117_2_1_1'].'\',\''.$_SESSION['d02_rphne_14_1_110_2_1_1'].'\',\''.$_SESSION['d02_rmail_15_1_113_2_1_1'].'\')');
+								    unset($_SESSION['d02_bname_1_1_109_2_1_1'],$_SESSION['d02_addrs_2_1_116_2_1_1'],$_SESSION['d02_cityy_3_1_116_2_1_1'],$_SESSION['d02_state_4_1_116_2_1_1'],$_SESSION['d02_zipce_5_1_117_2_1_1'],$_SESSION['d02_phone_6_1_110_2_1_1'],$_SESSION['d02_email_7_1_113_2_1_1'],$_SESSION['d02_conta_8_1_109_2_1_1'],$_SESSION['d02_rname_9_1_109_2_1_1'],$_SESSION['d02_raddr_10_1_116_2_1_1'],$_SESSION['d02_rcity_11_1_116_2_1_1'],$_SESSION['d02_rstat_12_1_116_2_1_1'],$_SESSION['d02_rzipc_13_1_117_2_1_1'],$_SESSION['d02_rphne_14_1_110_2_1_1'],$_SESSION['d02_rmail_15_1_113_2_1_1']);
+								    echo('<span id="status">Your tip has been recieved, Thanks!</span><br>');
+								}
+								$_SESSION['d_sys_rgx']['d02_bname_1_1_109_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_addrs_2_1_116_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_cityy_3_1_116_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_state_4_1_116_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_zipce_5_1_117_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_phone_6_1_110_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_email_7_1_113_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_conta_8_1_109_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_rname_9_1_109_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_raddr_10_1_116_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_rcity_11_1_116_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_rstat_12_1_116_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_rzipc_13_1_117_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_rphne_14_1_110_2_1_1'] = 0;
+								$_SESSION['d_sys_rgx']['d02_rmail_15_1_113_2_1_1'] = 0;			
+	    						break;
 	    						case 'd03':
 	    							switch($_SESSION['d03_data_1_1_999_1_2_1']) {
 	    								case '1':
@@ -1329,8 +1498,8 @@ class Lunnatti {
 	    							if($d04 == 3) {
 	    								echo('<span id="status">Thank you for your email...</span>');
 	    								$this->upx('vipstudios@gmx.com',$_SESSION['d04_bname_1_1_109_2_1_1'],$_SESSION['d04_descr_3_1_203_6_1_1'],$_SESSION['d04_email_2_1_202_2_1_1']);
-	    							}
 	    							unset($_SESSION['d04_bname_1_1_109_2_1_1'],$_SESSION['d04_email_2_1_202_2_1_1'],$_SESSION['d04_descr_3_1_203_6_1_1']);
+	    							}
 	    							$_SESSION['d_sys_rgx']['d04_bname_1_1_109_2_1_1'] = 0;
 	    							$_SESSION['d_sys_rgx']['d04_email_2_1_202_2_1_1'] = 0;
 	    							$_SESSION['d_sys_rgx']['d04_descr_3_1_203_6_1_1'] = 0;
@@ -1404,8 +1573,8 @@ class Lunnatti {
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '10';
 	    									}
 	    								break;
-	    								case '7'://yes;get url link
-	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    								case '7':
+	    									$this->dbq('1',$ai.'<span id="status">"Great! contact <a href="mailto://vipstudios@gmx.com" class="phone">vipstudios@gmx.com</a> or refer someone to get FREE cash!"</span>');
 	    									if($_SESSION['dbq'] == '1') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
@@ -1414,8 +1583,8 @@ class Lunnatti {
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
 	    									}
 	    								break;
-	    								case '8'://no;why?					
-	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    								case '8':				
+	    									$this->dbq('1',$ai.'<span id="status">"Great! contact <a href="mailto://vipstudios@gmx.com" class="phone">vipstudios@gmx.com</a> or refer someone to get FREE cash!"</span>');
 	    									if($_SESSION['dbq'] == '1') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
@@ -1424,8 +1593,8 @@ class Lunnatti {
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
 	    									}
 	    								break;
-	    								case '9'://yes;drop textarea
-	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    								case '9':
+	    									$this->dbq('1',$ai.'<span id="status">"Great! contact <a href="mailto://vipstudios@gmx.com" class="phone">vipstudios@gmx.com</a> or refer someone to get FREE cash!"</span>');
 	    								    if($_SESSION['dbq'] == '1') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
@@ -1434,8 +1603,8 @@ class Lunnatti {
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
 	    									}
 	    								break;
-	    								case '10'://no;why?
-	    									$this->dbq('1',$ai.'<span id="status">"Are you ready to create your first WebApp?"</span>');
+	    								case '10':
+	    									$this->dbq('1',$ai.'<span id="status">"Great! contact <a href="mailto://vipstudios@gmx.com" class="phone">vipstudios@gmx.com</a> or refer someone to get FREE cash!"</span>');
 	    								    if($_SESSION['dbq'] == '1') {
 	    										$_SESSION['dbq'] = '0';
 	    										$_SESSION['d06_data_1_1_999_1_2_1'] = '1';
@@ -1446,7 +1615,6 @@ class Lunnatti {
 	    								break;
 	    							}
 	    						break;
-	    						///DYNAMIC OBJECTS
 	    						case 'd9999'://LOGOUT;{>
 	    							switch($_SESSION['d9999_data_1_1_999_1_2_1']) {
 	    								case '1':
@@ -2157,11 +2325,25 @@ class Lunnatti {
 				    							break;
 				    							case 'bname':
 				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Business Name:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Business Name:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'rname':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Your Name:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Your Name:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'nname':
+				    								if($am4['7'] == '1') {
 				    									echo('&#160;*&#160;Name:&#160;&#160;&#160;');
 				    								} elseif($am4['7'] == '2') {
 				    									echo('&#160;Name:&#160;&#160;&#160;');
 				    								}
-				    							break;
+				    								break;
 				    							case 'pname':
 				    								if($am4['7'] == '1') {
 				    									echo('&#160;*&#160;Email or ID to send payment to:&#160;&#160;&#160;');
@@ -2183,6 +2365,20 @@ class Lunnatti {
 				    									echo('&#160;Email:&#160;&#160;&#160;');
 				    								}
 				    							break;
+				    							case 'rmail':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Your Email:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Your Email:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'addrs':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Address:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Address:&#160;&#160;&#160;');
+				    								}
+				    							break;
 				    							case 'addra':
 				    								if($am4['7'] == '1') {
 				    									echo('&#160;*&#160;Address 1:&#160;&#160;&#160;');
@@ -2197,13 +2393,55 @@ class Lunnatti {
 				    									echo('&#160;Address 2:&#160;&#160;&#160;');
 				    								}
 				    							break;
+				    							case 'raddr':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Your Address:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Your Address:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'cityy':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;City:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;City:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'rcity':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Your City:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Your City:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'state':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;State:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;State:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'rstat':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Your State:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Your State:&#160;&#160;&#160;');
+				    								}
+				    							break;
 				    							case 'zipce':
 				    								if($am4['7'] == '1') {
 				    									echo('&#160;*&#160;Zip Code:&#160;&#160;&#160;');
 				    								} elseif($am4['7'] == '2') {
 				    									echo('&#160;Zip Code:&#160;&#160;&#160;');
 				    								}
-				    								break;
+				    							break;
+				    							case 'rzipc':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Your Zip Code:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Your Zip Code:&#160;&#160;&#160;');
+				    								}
+				    							break;
 				    							case 'propn':
 				    								if($am4['7'] == '1') {
 				    									echo('&#160;*&#160;Proposal Number:&#160;&#160;&#160;');
@@ -2216,6 +2454,13 @@ class Lunnatti {
 				    									echo('&#160;*&#160;Subject / Question:&#160;&#160;&#160;');
 				    								} elseif($am4['7'] == '2') {
 				    									echo('&#160;Subject / Question:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'conta':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Contact:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Contact:&#160;&#160;&#160;');
 				    								}
 				    							break;
 				    							case 'usrid':
@@ -2272,6 +2517,13 @@ class Lunnatti {
 				    									echo('&#160;*&#160;Phone:&#160;&#160;&#160;');
 				    								} elseif($am4['7'] == '2') {
 				    									echo('&#160;Phone:&#160;&#160;&#160;');
+				    								}
+				    							break;
+				    							case 'rphne':
+				    								if($am4['7'] == '1') {
+				    									echo('&#160;*&#160;Your Phone:&#160;&#160;&#160;');
+				    								} elseif($am4['7'] == '2') {
+				    									echo('&#160;Your Phone:&#160;&#160;&#160;');
 				    								}
 				    							break;
 				    							case 'ddfax':
