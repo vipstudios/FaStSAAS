@@ -181,9 +181,13 @@
 	    						break;
  */
 
-//   function dbi() needs your database nfo (ie.database,userid,password)
+//-- function dbi() needs your database nfo (ie.database,userid,password)
 
 //-- CREATE TABLE account (acct int(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,seclvl int(3),secmsg int(3),seckey varchar(255),secipl varchar(255),email varchar(255),userid varchar(255),passwd varchar(255),cashier decimal(10,2),subscription_start bigint(255) UNSIGNED,subscription_end bigint(255) UNSIGNED,subscription_typ int(3),pref1 int(3),pref2 int(3),pref3 int(3),pref4 int(3),pref5 int(3),pref6 int(3));
+		
+//-- CREATE TABLE email (id bigint(255) AUTO_INCREMENT PRIMARY KEY,email varchar(255),offers varchar(255),signups varchar(255),affid bigint(255));
+		
+//-- CREATE TABLE makeMoney (id bigint(255) AUTO_INCREMENT PRIMARY KEY,bname varchar(255),baddr varchar(255),bcity char(155),bstate char(155),bzip varchar(25),bphone varchar(25),bemail varchar(255),bcontact varchar(255),yname varchar(255),yaddr varchar(255),ycity char(155),ystate char(155),yzip varchar(25),yphone varchar(25),yemail varchar(255));
 
 //-- vipstudios@gmx.com for support.
 
