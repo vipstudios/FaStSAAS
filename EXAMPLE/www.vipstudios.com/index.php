@@ -1,33 +1,5 @@
-<?php 
+<?php
 @session_start();
-
-$pub = 1;/*PUBLIC 0,1 0=LOCAL DEVELOPMENT , 1=LIVE; FIRE UP SESSION, SET RANDOM WALLPAPPER AND REDIRECT*/
-
-if(!isset($_SESSION['i'])) {
-	@session_destroy();
-	@session_start();
-	$_SESSION['i'] = 0;
-	$_SESSION['t'] = time();
-}
-if(isset($_SESSION['t'])) {
-	if(time() >= $_SESSION['t']+600) {
-		@session_destroy();
-		@session_start();
-		$_SESSION['i'] = 0;
-		$_SESSION['t'] = time();
-	}
-}
-if($_SERVER['HTTP_HOST'] != 'www.vipstudios.com' && $pub == '1') {
-	$_SESSION['i']++;
-	header('Location: http://www.vipstudios.com/index.php?');
-	exit;
-}
-if($_SESSION['i'] < '1' && $pub == '1') {
-	$_SESSION['i']++;
-	header('Location: http://www.vipstudios.com/index.php?');
-	exit;
-}
-
 if(!isset($_SESSION['tpl'])) {
 	$_SESSION['tpl'] = rand(1,5);
 }
@@ -48,501 +20,500 @@ switch($_SESSION['tpl']) {
 		$tpl = './www-img/vipTokyo1.jpg';
 	break;
 }
-$start_s = file_get_contents('./www-cgi/fastsaas.php');
 echo('<!DOCTYPE html>');
 echo('<html>');
 echo('<head>');
 echo('<title>VIP Studios >> Convert @ny iOS App, Android App or Website into a WebApp; Go mobile today!</title>');
 $css = '
 a:link {
-font-family: Myriad Pro;
-font-size: 16px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : none;
+	font-family: Myriad Pro;
+	font-size: 16px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : none;
 }
 a:visited {
-font-family: Myriad Pro;
-font-size: 16px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : none;
+	font-family: Myriad Pro;
+	font-size: 16px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : none;
 }
 a:hover {
-font-family: Myriad Pro;
-font-size: 16px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : underline;
+	font-family: Myriad Pro;
+	font-size: 16px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : underline;
 }
 a:active {
-font-family: Myriad Pro;
-font-size: 16px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : none;
+	font-family: Myriad Pro;
+	font-size: 16px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : none;
 }
 a.phone:link {
-font-family: Myriad Pro;
-font-size: 12px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : none;
+	font-family: Myriad Pro;
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : none;
 }
 a.phone:visited {
-font-family: Myriad Pro;
-font-size: 12px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : none;
+	font-family: Myriad Pro;
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : none;
 }
 a.phone:hover {
-font-family: Myriad Pro;
-font-size: 12px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : none;
+	font-family: Myriad Pro;
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : none;
 }
 a.phone:active {
-font-family: Myriad Pro;
-font-size: 12px;
-color: #FFFFFF;
-font-weight: normal;
-text-decoration : none;
+	font-family: Myriad Pro;
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration : none;
 }
 img {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px0px 0px;
-border: 0px;	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px0px 0px;
+	border: 0px;	
 }
 .input {
-font-family: Arial;
-font-size: 22px;
-font-color: #FFFFFF;		
+	font-family: Arial;
+	font-size: 22px;
+	font-color: #FFFFFF;		
 }
 #VIPStudiosLink {
-cursor: pointer;		
+	cursor: pointer;		
 }
 #HotDealsLink {
-cursor: pointer;		
+	cursor: pointer;		
 }
 #ContactUsLink {
-cursor: pointer;		
+	cursor: pointer;		
 }
 #InquireToday {
-cursor: pointer;		
+	cursor: pointer;		
 }
 html {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-height: 100%;
-min-height: 100%;
-background: #000000 url('.$tpl.') no-repeat center center fixed;
-background-color: #000000;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-text-align: center;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	height: 100%;
+	min-height: 100%;
+	background: #000000 url('.$tpl.') no-repeat center center fixed;
+	background-color: #000000;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	text-align: center;
 }
 body {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-text-align: center;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
 }
 div.nav {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 100%;
-height: 46px;
-border-width: 1px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-z-index: 99;
-position: fixed;
-text-align: left;
--webkit-opacity: 0.8;
--moz-opacity: 0.8;
--o-opacity: 0.8;
-opacity: 0.8;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 100%;
+	height: 46px;
+	border-width: 1px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	z-index: 99;
+	position: fixed;
+	text-align: left;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	-o-opacity: 0.8;
+	opacity: 0.8;
 }
 div.cloudMenu {
-margin: 0px 6px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 45px;
-height: 45px;
-z-index: 99;
-position: relative;
-float: right;
-cursor: pointer;
+	margin: 0px 6px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 45px;
+	height: 45px;
+	z-index: 99;
+	position: relative;
+	float: right;
+	cursor: pointer;
 }
 div.cloudMenuNav {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 175px;
-height: 100%;
-z-index: 89;
-text-align: left;
-position: fixed;
-top: 47px;
-border-width: 1px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-display: none;
-right: 0px;
--webkit-opacity: 0.8;
--moz-opacity: 0.8;
--o-opacity: 0.8;
-opacity: 0.8;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 175px;
+	height: 100%;
+	z-index: 89;
+	text-align: left;
+	position: fixed;
+	top: 47px;
+	border-width: 1px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	display: none;
+	right: 0px;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	-o-opacity: 0.8;
+	opacity: 0.8;
 }
 div.vipConcierge {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 175px;
-height: 25px;
-z-index: 89;
-position: fixed;
-bottom: 3px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 175px;
+	height: 25px;
+	z-index: 89;
+	position: fixed;
+	bottom: 3px;
 }
 div.vipWiFi {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 65px;
-height: 45px;
-z-index: 90;
-position: fixed;
-bottom: 11px;
-right: 11px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 65px;
+	height: 45px;
+	z-index: 90;
+	position: fixed;
+	bottom: 11px;
+	right: 11px;
 }
 div.phone {
-margin: 3px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 100%;
-height: 45px;
-z-index: 89;		
+	margin: 3px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 100%;
+	height: 45px;
+	z-index: 89;		
 }
 div.CustomerSupport {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-font-family: Arial;
-font-size: 12px;
-color: #FFFFFF;
-display: none;
-overflow-x: hidden;
-overflow-y: hidden;
-z-index: 87;
-border-width: 0px;
-border-color: #FF0000;
-border-style: solid;
-position: relative;	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-family: Arial;
+	font-size: 12px;
+	color: #FFFFFF;
+	display: none;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	z-index: 87;
+	border-width: 0px;
+	border-color: #FF0000;
+	border-style: solid;
+	position: relative;	
 }
 div.MakeMoney {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-font-family: Arial;
-font-size: 12px;
-color: #FFFFFF;
-overflow-x: hidden;
-overflow-y: hidden;
-z-index: 9;
-border-width: 0px;
-border-color: #FF0000;
-border-style: solid;
-position: relative;	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-family: Arial;
+	font-size: 12px;
+	color: #FFFFFF;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	z-index: 9;
+	border-width: 0px;
+	border-color: #FF0000;
+	border-style: solid;
+	position: relative;	
 }
 div.HelpDesk {
-margin: 68px 0px 0px 5px;
-padding: 0px 0px 0px 0px;
-width: 300px;
-height: 45px;
-z-index: 85;
-text-align: left;
-vertical-align: top;
-position: fixed;
-border-width: 0px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-font-family: Arial;
-font-size: 12px;
-color: #FFFFFF;
-display: none;
-left: 0px;
--webkit-opacity: 1.0;
--moz-opacity: 1.0;
--o-opacity: 1.0;
-opacity: 1.0;
--o-border-radius: 8px;
--webkit-border-radius: 8px;
--moz-border-radius: 8px;
-border-radius: 8px;
+	margin: 68px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+	width: 300px;
+	height: 45px;
+	z-index: 85;
+	text-align: left;
+	vertical-align: top;
+	position: fixed;
+	border-width: 0px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	font-family: Arial;
+	font-size: 12px;
+	color: #FFFFFF;
+	display: none;
+	left: 0px;
+	-webkit-opacity: 1.0;
+	-moz-opacity: 1.0;
+	-o-opacity: 1.0;
+	opacity: 1.0;
+	-o-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
 }
 div.acontent {
-margin: 90px auto 0px auto;
-padding: 3px 3px 3px 3px;
-width: 300px;
-height: 300px;
-border-width: 1px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-position: absolute;
-z-index: 1;
-left: 46%;
--webkit-opacity: 0.8;
--moz-opacity: 0.8;
--o-opacity: 0.8;
-opacity: 0.8;
--o-border-radius: 15px;
--webkit-border-radius: 15px;
--moz-border-radius: 15px;
-border-radius: 15px;
-text-align: left;
-overflow-x: hidden;
-overflow-y: hidden;
+	margin: 90px auto 0px auto;
+	padding: 3px 3px 3px 3px;
+	width: 300px;
+	height: 300px;
+	border-width: 1px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	position: absolute;
+	z-index: 1;
+	left: 46%;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	-o-opacity: 0.8;
+	opacity: 0.8;
+	-o-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	text-align: left;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 div.bcontent {
-margin: 410px auto 0px auto;
-padding: 3px 3px 3px 3px;
-width: 300px;
-height: 300px;
-border-width: 1px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-position: absolute;
-z-index: 1;
-left: 46%;
--webkit-opacity: 0.8;
--moz-opacity: 0.8;
--o-opacity: 0.8;
-opacity: 0.8;
--o-border-radius: 15px;
--webkit-border-radius: 15px;
--moz-border-radius: 15px;
-border-radius: 15px;
-text-align: left;
-overflow-x: hidden;
-overflow-y: scroll;
+	margin: 410px auto 0px auto;
+	padding: 3px 3px 3px 3px;
+	width: 300px;
+	height: 300px;
+	border-width: 1px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	position: absolute;
+	z-index: 1;
+	left: 46%;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	-o-opacity: 0.8;
+	opacity: 0.8;
+	-o-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	text-align: left;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 div.ccontent {
-margin: 730px auto 0px auto;
-padding: 3px 3px 3px 3px;
-width: 300px;
-height: 300px;
-border-width: 1px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-position: absolute;
-z-index: 1;
-left: 46%;
--webkit-opacity: 0.8;
--moz-opacity: 0.8;
--o-opacity: 0.8;
-opacity: 0.8;
--o-border-radius: 15px;
--webkit-border-radius: 15px;
--moz-border-radius: 15px;
-border-radius: 15px;
-text-align: left;
-overflow-x: hidden;
-overflow-y: scroll;
+	margin: 730px auto 0px auto;
+	padding: 3px 3px 3px 3px;
+	width: 300px;
+	height: 300px;
+	border-width: 1px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	position: absolute;
+	z-index: 1;
+	left: 46%;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	-o-opacity: 0.8;
+	opacity: 0.8;
+	-o-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	text-align: left;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 div.dcontent {
-margin: 90px auto 0px auto;
-padding: 3px 3px 3px 3px;
-width: 300px;
-height: 300px;
-border-width: 1px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-position: absolute;
-z-index: 2;
-left: 46%;
--webkit-opacity: 0.8;
--moz-opacity: 0.8;
--o-opacity: 0.8;
-opacity: 0.8;
--o-border-radius: 15px;
--webkit-border-radius: 15px;
--moz-border-radius: 15px;
-border-radius: 15px;
-text-align: left;
-overflow-x: hidden;
-overflow-y: hidden;
-display: none;
+	margin: 90px auto 0px auto;
+	padding: 3px 3px 3px 3px;
+	width: 300px;
+	height: 300px;
+	border-width: 1px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	position: absolute;
+	z-index: 2;
+	left: 46%;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	-o-opacity: 0.8;
+	opacity: 0.8;
+	-o-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	text-align: left;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	display: none;
 }
 div.econtent {
-margin: 90px auto 0px auto;
-padding: 3px 3px 3px 3px;
-width: 300px;
-height: 300px;
-border-width: 1px;
-border-color: #333333;
-border-style: solid;
-background-color: #000000;
-position: absolute;
-z-index: 3;
-left: 46%;
--webkit-opacity: 0.8;
--moz-opacity: 0.8;
--o-opacity: 0.8;
-opacity: 0.8;
--o-border-radius: 15px;
--webkit-border-radius: 15px;
--moz-border-radius: 15px;
-border-radius: 15px;
-text-align: left;
-overflow-x: hidden;
-overflow-y: hidden;
-display: none;
+	margin: 90px auto 0px auto;
+	padding: 3px 3px 3px 3px;
+	width: 300px;
+	height: 300px;
+	border-width: 1px;
+	border-color: #333333;
+	border-style: solid;
+	background-color: #000000;
+	position: absolute;
+	z-index: 3;
+	left: 46%;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	-o-opacity: 0.8;
+	opacity: 0.8;
+	-o-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	text-align: left;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	display: none;
 }
 div.EmailMe {
-margin: 49px 0px 0px 5px;
-padding: 3px 3px 3px 3px;
-width: 120px;
-height: 12px;
-vertical-align: top;
-text-align: center;
-position: fixed;
-z-index: 99;
-background-color: #000000;
--webkit-opacity: 0.2;
--moz-opacity: 0.2;
--o-opacity: 0.2;
-opacity: 0.2;
+	margin: 49px 0px 0px 5px;
+	padding: 3px 3px 3px 3px;
+	width: 120px;
+	height: 12px;
+	vertical-align: top;
+	text-align: center;
+	position: fixed;
+	z-index: 99;
+	background-color: #000000;
+	-webkit-opacity: 0.2;
+	-moz-opacity: 0.2;
+	-o-opacity: 0.2;
+	opacity: 0.2;
 }
 div.Jackpot {
-margin: 70px 0px 0px 7px;
-padding: 0px 0px 0px 0px;
-width: 75px;
-height: 75px;
-position: absolute;
-z-index: 9;	
+	margin: 70px 0px 0px 7px;
+	padding: 0px 0px 0px 0px;
+	width: 75px;
+	height: 75px;
+	position: absolute;
+	z-index: 9;	
 }
 div.JackpotBanner {
-margin: 0px 0px 0px 0px;
-padding: 7px 0px 0px 0px;
-width: 300px;
-height: 25px;
-position: absolute;
-z-index: 9;
-text-align: center;
-background-color: #000000;
--webkit-opacity: 0.6;
--moz-opacity: 0.6;
--o-opacity: 0.6;
-opacity: 0.6;
+	margin: 0px 0px 0px 0px;
+	padding: 7px 0px 0px 0px;
+	width: 300px;
+	height: 25px;
+	position: absolute;
+	z-index: 9;
+	text-align: center;
+	background-color: #000000;
+	-webkit-opacity: 0.6;
+	-moz-opacity: 0.6;
+	-o-opacity: 0.6;
+	opacity: 0.6;
 }
 div.SocialBar {
-margin: auto auto 5px 5px;
-padding: 0px 0px 0px 0px;
-width: 45px;
-height: 150px;
-z-index: 25;
-position: fixed;
-bottom: 0px;
-left: 0px;
-float: bottom;
+	margin: auto auto 5px 5px;
+	padding: 0px 0px 0px 0px;
+	width: 45px;
+	height: 150px;
+	z-index: 25;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	float: bottom;
 }
 div.Facebook {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 45px;
-height: 45px;
-z-index: 25;
-position: relative;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 45px;
+	height: 45px;
+	z-index: 25;
+	position: relative;
 }
 div.Twitter {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 45px;
-height: 45px;
-z-index: 25;
-position: relative;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 45px;
+	height: 45px;
+	z-index: 25;
+	position: relative;
 }
 div.GitHub {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-width: 45px;
-height: 45px;
-z-index: 25;
-position: relative;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 45px;
+	height: 45px;
+	z-index: 25;
+	position: relative;
 }
 div.HotDeals {
-margin: 0px 0px 0px 0px;
-padding: 3px 3px 3px 3px;
-font-family: Arial;
-font-size: 14px;
-color: #FFFFFF;
-overflow-x: hidden;
-overflow-y: hidden;
-z-index: 3;
-border-width: 0px;
-border-color: #FF0000;
-border-style: solid;
-position: relative;
+	margin: 0px 0px 0px 0px;
+	padding: 3px 3px 3px 3px;
+	font-family: Arial;
+	font-size: 14px;
+	color: #FFFFFF;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	z-index: 3;
+	border-width: 0px;
+	border-color: #FF0000;
+	border-style: solid;
+	position: relative;
 }
 div.ContactUs {
-margin: 0px 0px 0px 0px;
-padding: 3px 3px 3px 3px;
-font-family: Arial;
-font-size: 14px;
-color: #FFFFFF;
-overflow-x: hidden;
-overflow-y: hidden;
-z-index: 3;
-border-width: 0px;
-border-color: #FF0000;
-border-style: solid;
-position: relative;	
+	margin: 0px 0px 0px 0px;
+	padding: 3px 3px 3px 3px;
+	font-family: Arial;
+	font-size: 14px;
+	color: #FFFFFF;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	z-index: 3;
+	border-width: 0px;
+	border-color: #FF0000;
+	border-style: solid;
+	position: relative;	
 }
 div.copyright {
-margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-text-align: right;
-vertical-align: middle;
-width: 100%;
-height: 15px;
-z-index: 89;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: right;
+	vertical-align: middle;
+	width: 100%;
+	height: 15px;
+	z-index: 89;
 }
 span.f_arial10 {
-font-family: Arial;
-font-size: 10px;		
+	font-family: Arial;
+	font-size: 10px;		
 }
 span.f_arial11 {
-font-family: Arial;
-font-size: 11px;		
+	font-family: Arial;
+	font-size: 11px;		
 }
 span.f_arial12 {
-font-family: Arial;
-font-size: 12px;		
+	font-family: Arial;
+	font-size: 12px;		
 }
 span.f_arial13 {
-font-family: Arial;
-font-size: 13px;		
+	font-family: Arial;
+	font-size: 13px;		
 }
 span.f_arial14 {
-font-family: Arial;
-font-size: 14px;		
+	font-family: Arial;
+	font-size: 14px;		
 }
 span.f_arial15 {
-font-family: Arial;
-font-size: 15px;		
+	font-family: Arial;
+	font-size: 15px;		
 }
 span.f_arial16 {
-font-family: Arial;
-font-size: 16px;		
+	font-family: Arial;
+	font-size: 16px;		
 }
 span.f_bold {
-font-weight: bold;		
+	font-weight: bold;		
 }
 span.c_ffffff {
-color: #FFFFFF;
+	color: #FFFFFF;
 }
 ';
 $css = str_replace(array("\t","\n","\r"),"",$css);
@@ -561,14 +532,14 @@ echo('<style type="text/css">'.$css.'</style>');
 $scripts = ('
 <script>
 $(document).ready(function() {
-    $("p").click(function() {
-        $(this).hide();
-    });
+	$("p").click(function() {
+		$(this).hide();
+	});
 	$("#cloudMenu").click(function() {
 		if($("#acontent").css("display") != "none") {
 			$("#acontent").hide();
 		}
-  		if($("#bcontent").css("display") != "none") {
+		if($("#bcontent").css("display") != "none") {
 			$("#bcontent").hide();
 		}
 		if($("#ccontent").css("display") != "none") {
@@ -625,89 +596,89 @@ $(document).ready(function() {
 	$("#CustomerSupport").load("./www-cgi/fastsaas.php?vu=4:1");
 	$("#CustomerSupport").show();
 	$("#HelpDesk").delay(5000).fadeIn(function() {
-	    $("#MakeMoney").empty();
-	    $("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
-	    $("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
-	    $("#MakeMoney").show();
+		$("#MakeMoney").empty();
+		$("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
+		$("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
+		$("#MakeMoney").show();
 	});
-    $("#HotDeals").on("submit", "#d01", function(e){
-        e.preventDefault();
-        $.ajax({
-        data: $(this).serialize(),
-        type: $(this).attr("method"),
-        url: $(this).attr("action"),
-        success: function(response) {
-            $("#HotDeals").html(response);
-			$("#HotDeals").delay(999).fadeOut(function() {
-				$("#HotDeals").empty();
-				$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
-				$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
-				$("#HotDeals").show();
-			});
-        }
-   		});
-    	return false;
-    });
-    $("#MakeMoney").on("submit", "#d02", function(e){
-        e.preventDefault();
-        $.ajax({
-        data: $(this).serialize(),
-        type: $(this).attr("method"),
-        url: $(this).attr("action"),
-        success: function(response) {
-            $("#MakeMoney").html(response);
-			$("#MakeMoney").delay(999).fadeOut(function() {
-				$("#MakeMoney").empty();
-				$("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
-				$("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
-				$("#MakeMoney").show();
-			});
-        }
-   		});
-    	return false;
-    });
+	$("#HotDeals").on("submit", "#d01", function(e){
+		e.preventDefault();
+		$.ajax({
+			data: $(this).serialize(),
+			type: $(this).attr("method"),
+			url: $(this).attr("action"),
+			success: function(response) {
+				$("#HotDeals").html(response);
+				$("#HotDeals").delay(999).fadeOut(function() {
+					$("#HotDeals").empty();
+					$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
+					$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
+					$("#HotDeals").show();
+				});
+			}
+		});
+		return false;
+	});
+	$("#MakeMoney").on("submit", "#d02", function(e){
+		e.preventDefault();
+		$.ajax({
+			data: $(this).serialize(),
+			type: $(this).attr("method"),
+			url: $(this).attr("action"),
+			success: function(response) {
+				$("#MakeMoney").html(response);
+				$("#MakeMoney").delay(999).fadeOut(function() {
+					$("#MakeMoney").empty();
+					$("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
+					$("#MakeMoney").load("./www-cgi/fastsaas.php?vu=1:2");
+					$("#MakeMoney").show();
+				});
+			}
+		});
+		return false;
+	});
 	$("#ContactUs").on("submit", "#d04", function(e){
-        e.preventDefault();
-        $.ajax({
-        data: $(this).serialize(),
-        type: $(this).attr("method"),
-        url: $(this).attr("action"),
-        success: function(response) {
-            $("#ContactUs").html(response);
-			$("#ContactUs").delay(999).fadeOut(function() {
-				$("#ContactUs").empty();
-				$("#ContactUs").load("./www-cgi/fastsaas.php?vu=3:1");
-				$("#ContactUs").load("./www-cgi/fastsaas.php?vu=3:1");
-				$("#ContactUs").show();
-			});
-        }
-   		});
-    	return false;
-    });
+		e.preventDefault();
+		$.ajax({
+			data: $(this).serialize(),
+			type: $(this).attr("method"),
+			url: $(this).attr("action"),
+			success: function(response) {
+				$("#ContactUs").html(response);
+				$("#ContactUs").delay(999).fadeOut(function() {
+					$("#ContactUs").empty();
+					$("#ContactUs").load("./www-cgi/fastsaas.php?vu=3:1");
+					$("#ContactUs").load("./www-cgi/fastsaas.php?vu=3:1");
+					$("#ContactUs").show();
+				});
+			}
+		});
+		return false;
+	});
 	$("#CustomerSupport").on("change", "#dbq_f", function(e){
-        e.preventDefault();
-        $.ajax({
-        data: $(this).serialize(),
-        type: $(this).attr("method"),
-        url: $(this).attr("action"),
-        success: function(response) {
-            $("#CustomerSupport").html(response);
-			$("#CustomerSupport").delay(999).fadeOut(function() {
-				$("#CustomerSupport").empty();
-				$("#CustomerSupport").load("./www-cgi/fastsaas.php?vu=4:1");
-				$("#CustomerSupport").load("./www-cgi/fastsaas.php?vu=4:1");
-				$("#CustomerSupport").show();
-			});
-        }
-   		});
-    	return false;
-    });
+		e.preventDefault();
+		$.ajax({
+			data: $(this).serialize(),
+			type: $(this).attr("method"),
+			url: $(this).attr("action"),
+			success: function(response) {
+				$("#CustomerSupport").html(response);
+				$("#CustomerSupport").delay(999).fadeOut(function() {
+					$("#CustomerSupport").empty();
+					$("#CustomerSupport").load("./www-cgi/fastsaas.php?vu=4:1");
+					$("#CustomerSupport").load("./www-cgi/fastsaas.php?vu=4:1");
+					$("#CustomerSupport").show();
+				});
+			}
+		});
+		return false;
+	});
 	$("#body, body").vegas( {
 		overlay: "./www-cgi/overlays/02.png",
 		animation: "random",
 		transition: ["fade","fade2","slideLeft","slideLeft2","slideRight","slideRight2"],
 		delay: 6999,
-    	slides: [{src: "./www-img/vipAustin1.jpg"},{src: "./www-img/vipCayman1.jpg"},{src: "./www-img/vipHouston2.jpg"},{src: "./www-img/vipParis1.jpg"},{src: "./www-img/vipTokyo1.jpg"}]
+		slides: [{src: "./www-img/vipAustin1.jpg"},{src: "./www-img/vipCayman1.jpg"},{src: "./www-img/vipHouston2.jpg"},{src: "./www-img/vipParis1.jpg"},{src: "./www-img/vipTokyo1.jpg"}]
 	});
 });
 </script>
@@ -729,25 +700,25 @@ $(document).ready(function() {
 		@NYWHERE YOU SEE A DOUBLE LOAD.
 		
 		$("#HotDeals").on("submit", "#d01", function(e){
-        e.preventDefault();
-        $.ajax({
-        data: $(this).serialize(),
-        type: $(this).attr("method"),
-        url: $(this).attr("action"),
-        success: function(response) {
-            $("#HotDeals").html(response);
-			$("#HotDeals").delay(999).fadeOut(function() {
-				$("#HotDeals").empty();
-				$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
-				$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
-				$("#HotDeals").show();
+			e.preventDefault();
+			$.ajax({
+				data: $(this).serialize(),
+				type: $(this).attr("method"),
+				url: $(this).attr("action"),
+				success: function(response) {
+					$("#HotDeals").html(response);
+					$("#HotDeals").delay(999).fadeOut(function() {
+						$("#HotDeals").empty();
+						$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
+						$("#HotDeals").load("./www-cgi/fastsaas.php?vu=1:1");
+						$("#HotDeals").show();
+					});
+				}
 			});
-        }
-   		});
-    	return false;
-    });
+			return false;
+		});
 */
-$scripts = str_replace(array(" ","\t","\n","\r"),"",$scripts);
+$scripts = str_replace(array("\t","\n","\r"),"",$scripts);
 echo($scripts);
 
 echo('</head>');
