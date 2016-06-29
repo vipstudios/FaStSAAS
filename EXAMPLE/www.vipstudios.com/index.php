@@ -23,7 +23,7 @@ switch($_SESSION['tpl']) {
 echo('<!DOCTYPE html>');
 echo('<html>');
 echo('<head>');
-echo('<title>VIP Studios >> Convert @ny iOS App, Android App or Website into a WebApp; Go mobile today!</title>');
+echo('<title>Web apps @ vipstudios = responsive web design.</title>');
 $css = '
 a:link {
 	font-family: Myriad Pro;
