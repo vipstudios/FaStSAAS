@@ -673,7 +673,7 @@ $(document).ready(function() {
 		});
 		return false;
 	});
-	$("#body, body").vegas( {
+	$("body").vegas( {
 		overlay: "./www-cgi/overlays/02.png",
 		animation: "random",
 		transition: ["fade","fade2","slideLeft","slideLeft2","slideRight","slideRight2"],
