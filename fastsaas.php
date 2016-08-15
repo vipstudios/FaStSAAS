@@ -727,14 +727,10 @@ class Lunnatti {
     	switch($aa) {
     		case 1:
     			$db   = array();
-    			//$db_a = 'localhost';
-    			//$db_b = 'root';
-    			//$db_c = 'Wh1zb4ng9000W4rcr4ft_!_!';
-    			//$db_d = 'vipstudios';
-    			$db_a = 'db624035286.db.1and1.com';
-    			$db_b = 'dbo624035286';
-    			$db_c = 'SqlS3rv3rC3nt3rT3x45Y477_!_!';
-    			$db_d = 'db624035286';
+    			$db_a = 'localhost';
+    			$db_b = 'user';
+    			$db_c = 'password';
+    			$db_d = 'database';
     			$db_e = array();
     			$db = mysql_connect($db_a,$db_b,$db_c);
     			mysql_select_db($db_d,$db);
