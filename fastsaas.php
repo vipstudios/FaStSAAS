@@ -727,10 +727,14 @@ class Lunnatti {
     	switch($aa) {
     		case 1:
     			$db   = array();
-    			$db_a = 'localhost';
-    			$db_b = 'user';
-    			$db_c = 'password';
-    			$db_d = 'db';
+    			//$db_a = 'localhost';
+    			//$db_b = 'root';
+    			//$db_c = 'Wh1zb4ng9000W4rcr4ft_!_!';
+    			//$db_d = 'vipstudios';
+    			$db_a = 'db624035286.db.1and1.com';
+    			$db_b = 'dbo624035286';
+    			$db_c = 'SqlS3rv3rC3nt3rT3x45Y477_!_!';
+    			$db_d = 'db624035286';
     			$db_e = array();
     			$db = mysql_connect($db_a,$db_b,$db_c);
     			mysql_select_db($db_d,$db);
@@ -1434,26 +1438,27 @@ class Lunnatti {
 	    									$d02++;
 	    								}
 	    							}
-								if($d02 == 15) {
-								    $this->dbi('1','INSERT INTO makeMoney (bname,baddr,bcity,bstate,bzip,bphone,bemail,bcontact,yname,yaddr,ycity,ystate,yzip,yphone,yemail) values (\''.$_SESSION['d02_bname_1_1_109_2_1_1'].'\',\''.$_SESSION['d02_addrs_2_1_116_2_1_1'].'\',\''.$_SESSION['d02_cityy_3_1_116_2_1_1'].'\',\''.$_SESSION['d02_state_4_1_116_2_1_1'].'\',\''.$_SESSION['d02_zipce_5_1_117_2_1_1'].'\',\''.$_SESSION['d02_phone_6_1_110_2_1_1'].'\',\''.$_SESSION['d02_email_7_1_113_2_1_1'].'\',\''.$_SESSION['d02_conta_8_1_109_2_1_1'].'\',\''.$_SESSION['d02_rname_9_1_109_2_1_1'].'\',\''.$_SESSION['d02_raddr_10_1_116_2_1_1'].'\',\''.$_SESSION['d02_rcity_11_1_116_2_1_1'].'\',\''.$_SESSION['d02_rstat_12_1_116_2_1_1'].'\',\''.$_SESSION['d02_rzipc_13_1_117_2_1_1'].'\',\''.$_SESSION['d02_rphne_14_1_110_2_1_1'].'\',\''.$_SESSION['d02_rmail_15_1_113_2_1_1'].'\')');
-								    unset($_SESSION['d02_bname_1_1_109_2_1_1'],$_SESSION['d02_addrs_2_1_116_2_1_1'],$_SESSION['d02_cityy_3_1_116_2_1_1'],$_SESSION['d02_state_4_1_116_2_1_1'],$_SESSION['d02_zipce_5_1_117_2_1_1'],$_SESSION['d02_phone_6_1_110_2_1_1'],$_SESSION['d02_email_7_1_113_2_1_1'],$_SESSION['d02_conta_8_1_109_2_1_1'],$_SESSION['d02_rname_9_1_109_2_1_1'],$_SESSION['d02_raddr_10_1_116_2_1_1'],$_SESSION['d02_rcity_11_1_116_2_1_1'],$_SESSION['d02_rstat_12_1_116_2_1_1'],$_SESSION['d02_rzipc_13_1_117_2_1_1'],$_SESSION['d02_rphne_14_1_110_2_1_1'],$_SESSION['d02_rmail_15_1_113_2_1_1']);
-								    echo('<span id="status">Your tip has been recieved, Thanks!</span><br>');
-								}
-								$_SESSION['d_sys_rgx']['d02_bname_1_1_109_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_addrs_2_1_116_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_cityy_3_1_116_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_state_4_1_116_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_zipce_5_1_117_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_phone_6_1_110_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_email_7_1_113_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_conta_8_1_109_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_rname_9_1_109_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_raddr_10_1_116_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_rcity_11_1_116_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_rstat_12_1_116_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_rzipc_13_1_117_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_rphne_14_1_110_2_1_1'] = 0;
-								$_SESSION['d_sys_rgx']['d02_rmail_15_1_113_2_1_1'] = 0;			
+									if($d02 == 15) {
+										$this->upx('vipstudios@gmx.com','data_resource','write_code:13','no-reply@vipstudios.com');
+									    $this->dbi('1','INSERT INTO makeMoney (bname,baddr,bcity,bstate,bzip,bphone,bemail,bcontact,yname,yaddr,ycity,ystate,yzip,yphone,yemail) values (\''.$_SESSION['d02_bname_1_1_109_2_1_1'].'\',\''.$_SESSION['d02_addrs_2_1_116_2_1_1'].'\',\''.$_SESSION['d02_cityy_3_1_116_2_1_1'].'\',\''.$_SESSION['d02_state_4_1_116_2_1_1'].'\',\''.$_SESSION['d02_zipce_5_1_117_2_1_1'].'\',\''.$_SESSION['d02_phone_6_1_110_2_1_1'].'\',\''.$_SESSION['d02_email_7_1_113_2_1_1'].'\',\''.$_SESSION['d02_conta_8_1_109_2_1_1'].'\',\''.$_SESSION['d02_rname_9_1_109_2_1_1'].'\',\''.$_SESSION['d02_raddr_10_1_116_2_1_1'].'\',\''.$_SESSION['d02_rcity_11_1_116_2_1_1'].'\',\''.$_SESSION['d02_rstat_12_1_116_2_1_1'].'\',\''.$_SESSION['d02_rzipc_13_1_117_2_1_1'].'\',\''.$_SESSION['d02_rphne_14_1_110_2_1_1'].'\',\''.$_SESSION['d02_rmail_15_1_113_2_1_1'].'\')');
+									    unset($_SESSION['d02_bname_1_1_109_2_1_1'],$_SESSION['d02_addrs_2_1_116_2_1_1'],$_SESSION['d02_cityy_3_1_116_2_1_1'],$_SESSION['d02_state_4_1_116_2_1_1'],$_SESSION['d02_zipce_5_1_117_2_1_1'],$_SESSION['d02_phone_6_1_110_2_1_1'],$_SESSION['d02_email_7_1_113_2_1_1'],$_SESSION['d02_conta_8_1_109_2_1_1'],$_SESSION['d02_rname_9_1_109_2_1_1'],$_SESSION['d02_raddr_10_1_116_2_1_1'],$_SESSION['d02_rcity_11_1_116_2_1_1'],$_SESSION['d02_rstat_12_1_116_2_1_1'],$_SESSION['d02_rzipc_13_1_117_2_1_1'],$_SESSION['d02_rphne_14_1_110_2_1_1'],$_SESSION['d02_rmail_15_1_113_2_1_1']);
+									    echo('<span id="status">Your tip has been recieved; We\'ll get back with you soon, Thanks!</span><br>');
+									}
+									$_SESSION['d_sys_rgx']['d02_bname_1_1_109_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_addrs_2_1_116_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_cityy_3_1_116_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_state_4_1_116_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_zipce_5_1_117_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_phone_6_1_110_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_email_7_1_113_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_conta_8_1_109_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_rname_9_1_109_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_raddr_10_1_116_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_rcity_11_1_116_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_rstat_12_1_116_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_rzipc_13_1_117_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_rphne_14_1_110_2_1_1'] = 0;
+									$_SESSION['d_sys_rgx']['d02_rmail_15_1_113_2_1_1'] = 0;			
 	    						break;
 	    						case 'd03':
 	    							switch($_SESSION['d03_data_1_1_999_1_2_1']) {
@@ -1468,10 +1473,10 @@ class Lunnatti {
 	    						break;
 	    						case 'd04':
 	    							$d04 = 0;
-	    							if($_SESSION['d04_bname_1_1_109_2_1_1'] == NULL) {
+	    							if($_SESSION['d04_nname_1_1_109_2_1_1'] == NULL) {
 	    								echo('<span id="status">Your First Name can\'t be left empty...</span><br>');
-	    							} elseif($_SESSION['d04_bname_1_1_109_2_1_1'] != NULL) {
-	    								if(!preg_match($this->rgx('109'),$_SESSION['d04_bname_1_1_109_2_1_1'])) {
+	    							} elseif($_SESSION['d04_nname_1_1_109_2_1_1'] != NULL) {
+	    								if(!preg_match($this->rgx('109'),$_SESSION['d04_nname_1_1_109_2_1_1'])) {
 	    									echo('<span id="status">Your Name must be in the correct format...</span><br>');
 	    								} else {
 	    									$d04++;
@@ -1498,9 +1503,9 @@ class Lunnatti {
 	    							if($d04 == 3) {
 	    								echo('<span id="status">Thank you for your email...</span>');
 	    								$this->upx('vipstudios@gmx.com',$_SESSION['d04_bname_1_1_109_2_1_1'],$_SESSION['d04_descr_3_1_203_6_1_1'],$_SESSION['d04_email_2_1_202_2_1_1']);
-	    							unset($_SESSION['d04_bname_1_1_109_2_1_1'],$_SESSION['d04_email_2_1_202_2_1_1'],$_SESSION['d04_descr_3_1_203_6_1_1']);
+	    								unset($_SESSION['d04_nname_1_1_109_2_1_1'],$_SESSION['d04_email_2_1_202_2_1_1'],$_SESSION['d04_descr_3_1_203_6_1_1']);
 	    							}
-	    							$_SESSION['d_sys_rgx']['d04_bname_1_1_109_2_1_1'] = 0;
+	    							$_SESSION['d_sys_rgx']['d04_nname_1_1_109_2_1_1'] = 0;
 	    							$_SESSION['d_sys_rgx']['d04_email_2_1_202_2_1_1'] = 0;
 	    							$_SESSION['d_sys_rgx']['d04_descr_3_1_203_6_1_1'] = 0;
 	    						break;
