@@ -645,7 +645,7 @@ $(document).ready(function() {
 			url: $(this).attr("action"),
 			success: function(response) {
 				$("#ContactUs").html(response);
-				$("#ContactUs").delay(999).fadeOut(function() {
+				$("#ContactUs").delay(5000).fadeOut(function() {
 					$("#ContactUs").empty();
 					$("#ContactUs").load("./www-cgi/fastsaas.php?vu=3:1");
 					$("#ContactUs").load("./www-cgi/fastsaas.php?vu=3:1");
