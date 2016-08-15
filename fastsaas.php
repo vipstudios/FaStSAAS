@@ -728,7 +728,7 @@ class Lunnatti {
     		case 1:
     			$db   = array();
     			$db_a = 'localhost';
-    			$db_b = 'root';
+    			$db_b = 'user';
     			$db_c = 'password';
     			$db_d = 'database';
     			$db_e = array();
